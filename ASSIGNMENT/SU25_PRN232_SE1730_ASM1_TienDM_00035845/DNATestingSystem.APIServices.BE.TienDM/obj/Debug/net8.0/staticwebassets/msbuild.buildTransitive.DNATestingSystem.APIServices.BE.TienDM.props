@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DNATestingSystem.APIServices.BE.TienDM.props" />
+</Project>

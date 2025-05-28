@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|c:\\users\\2004d\\onedrive\\m\u00E1y t\u00EDnh\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\dbcontext\\se18_prn232_se1730_g3_dnatestingsystemcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\dbcontext\\se18_prn232_se1730_g3_dnatestingsystemcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|c:\\users\\2004d\\onedrive\\m\u00E1y t\u00EDnh\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.apiservices.be.tiendm\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|solutionrelative:dnatestingsystem.apiservices.be.tiendm\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|c:\\users\\2004d\\onedrive\\m\u00E1y t\u00EDnh\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.apiservices.be.tiendm\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|solutionrelative:dnatestingsystem.apiservices.be.tiendm\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\Program.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.APIServices.BE.TienDM\\Program.cs",
+              "ToolTip": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\Program.cs",
+              "RelativeToolTip": "DNATestingSystem.APIServices.BE.TienDM\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T05:23:20.311Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\appsettings.json",
+              "RelativeDocumentMoniker": "DNATestingSystem.APIServices.BE.TienDM\\appsettings.json",
+              "ToolTip": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\appsettings.json",
+              "RelativeToolTip": "DNATestingSystem.APIServices.BE.TienDM\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-28T05:15:15.112Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "DocumentMoniker": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "ToolTip": "C:\\Users\\2004d\\OneDrive\\M\u00E1y t\u00EDnh\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAAcwDAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T05:13:55.781Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

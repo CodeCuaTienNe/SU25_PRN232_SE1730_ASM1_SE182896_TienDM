@@ -16,13 +16,14 @@ builder.Services.AddSwaggerGen();
 
 ///DI
 builder.Services.AddScoped<IAppointmentsTienDmService, AppointmentsTienDmService>();
-builder.Services.AddScoped<IUserAccountService, UserAccountService>();
+builder.Services.AddScoped<ISystemUserAccountService, SystemUserAccountService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.Never;
+        //options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.Never;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     });
 
 

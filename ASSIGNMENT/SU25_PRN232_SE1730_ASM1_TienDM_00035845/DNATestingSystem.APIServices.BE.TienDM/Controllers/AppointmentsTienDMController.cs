@@ -1,6 +1,9 @@
-﻿using DNATestingSystem.Repository.TienDM.Models;
+﻿using DNATestingSystem.Repository.TienDM.ModelExtensions;
+using DNATestingSystem.Repository.TienDM.Models;
 using DNATestingSystem.Services.TienDM;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +11,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "1,2")]
     public class AppointmentsTienDMController : ControllerBase
     {
         private readonly IAppointmentsTienDmService _appointmentsTienDmService;
@@ -15,49 +19,81 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         public AppointmentsTienDMController(IAppointmentsTienDmService appointmentsTienDmService)
         {
             _appointmentsTienDmService = appointmentsTienDmService;
-        }
-
-
-        // GET: api/<AppointmentsTienDM>
+        }        // GET api/AppointmentsTienDM - Get all appointments
         [HttpGet]
-        public async Task<IEnumerable<AppointmentsTienDm>> Get()
+        public async Task<ActionResult<List<AppointmentsTienDm>>> GetAll()
         {
-            return await _appointmentsTienDmService.GetAllAsyn();
+            var appointments = await _appointmentsTienDmService.GetAllAsync();
+            return Ok(appointments);
         }
 
-        // GET api/<AppointmentsTienDM>/5
+        // GET api/AppointmentsTienDM/{id} - Get appointment by ID
         [HttpGet("{id}")]
-        public async Task<AppointmentsTienDm> Get(int id)
+        public async Task<ActionResult<AppointmentsTienDm>> GetById(int id)
         {
-            return await _appointmentsTienDmService.GetByIdAsync(id);
+            var appointment = await _appointmentsTienDmService.GetByIdAsync(id);
+            if (appointment?.AppointmentsTienDmid == 0)
+                return NotFound();
+            return Ok(appointment);
         }
 
-        // POST api/<AppointmentsTienDM>
+        //pagination
+
+
+
+        // POST api/AppointmentsTienDM - Create new appointment
         [HttpPost]
-        public async Task<int> Create([FromBody] AppointmentsTienDm entity)
+        public async Task<ActionResult<int>> Create([FromBody] AppointmentsTienDm entity)
         {
-            return await _appointmentsTienDmService.CreateAsync(entity);
+            // Ensure ID is not set (auto-generated)
+            entity.AppointmentsTienDmid = 0;
+
+            var result = await _appointmentsTienDmService.CreateAsync(entity);
+            if (result > 0)
+                return CreatedAtAction(nameof(GetById), new { id = result }, result);
+            return BadRequest();
         }
 
-        // PUT api/<AppointmentsTienDM>/5
+        // PUT api/AppointmentsTienDM/{id} - Update existing appointment
         [HttpPut("{id}")]
-        public async Task<int> UpdateAsync(AppointmentsTienDm entity)
+        public async Task<ActionResult<int>> Update(int id, [FromBody] AppointmentsTienDm entity)
         {
-            return await _appointmentsTienDmService.UpdateAsync(entity);
+            // Set the ID from route parameter
+            entity.AppointmentsTienDmid = id;
+
+            var result = await _appointmentsTienDmService.UpdateAsync(entity);
+            if (result > 0)
+                return Ok(result);
+            return NotFound();
         }
 
-        // DELETE api/<AppointmentsTienDM>/5
+        // DELETE api/AppointmentsTienDM/{id} - Delete appointment
+        [HttpGet("search")]
+        [Authorize (Roles ="1,2")]
+        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
+        {
+            return await _appointmentsTienDmService.SearchAsync(id,contactPhone,totalAmount,page,pageSize);
+        }
+
         [HttpDelete("{id}")]
-        public async Task<bool> Search(int id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
-            return await _appointmentsTienDmService.DeleteAsync(id);
+            var result = await _appointmentsTienDmService.DeleteAsync(id);
+            if (result)
+                return Ok(true);
+            return NotFound();
         }
 
-        //SEARCH
-        [HttpGet("{id}/{contactPhone}/{totalAmount}")]
-        public async Task<List<AppointmentsTienDm>> Search(int id, string contactPhone, decimal totalAmount)
-        {
-            return await _appointmentsTienDmService.SearchAsync(id, contactPhone, totalAmount);
-        }
+        //// GET api/AppointmentsTienDM/search?id=1&contactPhone=123&totalAmount=100 - Search appointments
+        //[HttpGet("search")]
+        //public async Task<ActionResult<List<AppointmentsTienDm>>> Search(
+        //    [FromQuery] int id = 0,
+        //    [FromQuery] string contactPhone = "",
+        //    [FromQuery] decimal totalAmount = 0)
+        //{
+        //    var appointments = await _appointmentsTienDmService.SearchAsync(id, contactPhone ?? "", totalAmount);
+        //    return Ok(appointments);
+        //}
+
     }
 }

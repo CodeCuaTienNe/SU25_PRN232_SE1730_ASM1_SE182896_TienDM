@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.APIService
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.Services.TienDM", "DNATestingSystem.Services.TienDM\DNATestingSystem.Services.TienDM.csproj", "{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNATestingSystem.Repository.TienDM", "DNATestingSystem.Repository.TienDM\DNATestingSystem.Repository.TienDM.csproj", "{77D31821-DCFA-4082-BE1E-DE80BF5828CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.Repository.TienDM", "DNATestingSystem.Repository.TienDM\DNATestingSystem.Repository.TienDM.csproj", "{77D31821-DCFA-4082-BE1E-DE80BF5828CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3259,11 +3259,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TIEN'S LIBRABRY\\STUDY\\PRN232\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj",
+      "projectUniqueName": "C:\\Users\\2004d\\OneDrive\\Máy tính\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj",
       "projectName": "DNATestingSystem.APIServices.BE.TienDM",
-      "projectPath": "D:\\TIEN'S LIBRABRY\\STUDY\\PRN232\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj",
+      "projectPath": "C:\\Users\\2004d\\OneDrive\\Máy tính\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj",
       "packagesPath": "C:\\Users\\2004d\\.nuget\\packages\\",
-      "outputPath": "D:\\TIEN'S LIBRABRY\\STUDY\\PRN232\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\obj\\",
+      "outputPath": "C:\\Users\\2004d\\OneDrive\\Máy tính\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3285,8 +3285,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\TIEN'S LIBRABRY\\STUDY\\PRN232\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj": {
-              "projectPath": "D:\\TIEN'S LIBRABRY\\STUDY\\PRN232\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj"
+            "C:\\Users\\2004d\\OneDrive\\Máy tính\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj": {
+              "projectPath": "C:\\Users\\2004d\\OneDrive\\Máy tính\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj"
             }
           }
         }

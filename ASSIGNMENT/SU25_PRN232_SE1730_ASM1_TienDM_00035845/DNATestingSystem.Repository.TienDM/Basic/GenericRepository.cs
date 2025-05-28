@@ -1,4 +1,5 @@
-﻿using DNATestingSystem.Repository.TienDM.Models;
+﻿using DNATestingSystem.Repository.TienDM.DBContext;
+using DNATestingSystem.Repository.TienDM.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
