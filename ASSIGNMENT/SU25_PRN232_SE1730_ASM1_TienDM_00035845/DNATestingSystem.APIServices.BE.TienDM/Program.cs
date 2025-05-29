@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 ///DI
 builder.Services.AddScoped<IAppointmentsTienDmService, AppointmentsTienDmService>();
+builder.Services.AddScoped<IAppointmentStatusesTienDmService, AppointmentStatusesTienDmService>();
 builder.Services.AddScoped<ISystemUserAccountService, SystemUserAccountService>();
 
 builder.Services.AddControllers()

@@ -28,6 +28,12 @@ namespace DNATestingSystem.Services.TienDM
             return await _repository.GetAllAsync();
         }
 
+        public async Task<PaginationResult<List<AppointmentsTienDm>>> GetAllPaginatedAsync(int page, int pageSize)
+        {
+            // Use search with empty parameters to get all items with pagination
+            return await _repository.SearchAsync(0, "", 0, page, pageSize) ?? new PaginationResult<List<AppointmentsTienDm>>();
+        }
+
         public async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             return await _repository.GetByIdAsync(id);

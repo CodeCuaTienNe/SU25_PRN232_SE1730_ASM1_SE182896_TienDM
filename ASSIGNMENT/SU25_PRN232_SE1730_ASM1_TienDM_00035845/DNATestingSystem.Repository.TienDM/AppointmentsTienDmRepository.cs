@@ -20,7 +20,8 @@ namespace DNATestingSystem.Repository.TienDM
             var appointments = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
                 .Include(a => a.ServiceName)
-                .Include(a => a.UserAccount)
+                .Include(a => a.UserName)
+                .Include(a => a.SamplingMethod)
                 .ToListAsync();
             return appointments ?? new List<AppointmentsTienDm>();
         }        public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
