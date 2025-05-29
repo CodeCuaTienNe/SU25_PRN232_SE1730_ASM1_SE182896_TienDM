@@ -19,7 +19,7 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var appointments = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.ServiceName)
                 .Include(a => a.UserAccount)
                 .ToListAsync();
             return appointments ?? new List<AppointmentsTienDm>();
@@ -27,8 +27,8 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var appointment = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
+                .Include(a => a.ServiceName)
+                .Include(a => a.UserName)
                 .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
             return appointment ?? new AppointmentsTienDm();
         }        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
@@ -36,8 +36,8 @@ namespace DNATestingSystem.Repository.TienDM
             // Build the query without executing it
             var query = _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
+                .Include(a => a.ServiceName)
+                .Include(a => a.UserName)
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
                     && (id == 0 || a.AppointmentsTienDmid == id));

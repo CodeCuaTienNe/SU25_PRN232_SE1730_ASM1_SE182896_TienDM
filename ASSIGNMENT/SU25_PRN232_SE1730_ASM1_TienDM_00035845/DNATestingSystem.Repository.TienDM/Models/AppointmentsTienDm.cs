@@ -40,15 +40,15 @@ public partial class AppointmentsTienDm
     public string? UserName { get; set; }
 
     // Ignore navigation properties to prevent circular reference
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual AppointmentStatusesTienDm AppointmentStatusesTienDm { get; set; } = null!;
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual ICollection<SampleThinhLc> SampleThinhLcs { get; set; } = new List<SampleThinhLc>();
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual ServicesNhanVt ServicesNhanVt { get; set; } = null!;
 
-    [JsonIgnore]
+    //[JsonIgnore]
     public virtual SystemUserAccount UserAccount { get; set; } = null!;
 }
