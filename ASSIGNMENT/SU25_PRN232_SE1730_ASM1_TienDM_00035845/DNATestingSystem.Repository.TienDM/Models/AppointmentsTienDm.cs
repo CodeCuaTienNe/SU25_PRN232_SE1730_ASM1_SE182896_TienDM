@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace DNATestingSystem.Repository.TienDM.Models;
@@ -32,23 +33,27 @@ public partial class AppointmentsTienDm
 
     public decimal TotalAmount { get; set; }
 
-    public bool? IsPaid { get; set; }
 
-    // Add display properties for joined data
+    public bool? IsPaid { get; set; }    // Add display properties for joined data
+    [NotMapped]
     public string? ServiceName { get; set; }
+    
+    [NotMapped]
     public string? StatusName { get; set; }
-    public string? UserName { get; set; }
+    
+    [NotMapped]
+    public string? UserName { get; set; }    // Ignore navigation properties to prevent circular reference
 
-    // Ignore navigation properties to prevent circular reference
-    //[JsonIgnore]
+
+    [JsonIgnore]
     public virtual AppointmentStatusesTienDm AppointmentStatusesTienDm { get; set; } = null!;
 
-    //[JsonIgnore]
+    [JsonIgnore]
     public virtual ICollection<SampleThinhLc> SampleThinhLcs { get; set; } = new List<SampleThinhLc>();
 
-    //[JsonIgnore]
+    [JsonIgnore]
     public virtual ServicesNhanVt ServicesNhanVt { get; set; } = null!;
 
-    //[JsonIgnore]
+    [JsonIgnore]
     public virtual SystemUserAccount UserAccount { get; set; } = null!;
 }

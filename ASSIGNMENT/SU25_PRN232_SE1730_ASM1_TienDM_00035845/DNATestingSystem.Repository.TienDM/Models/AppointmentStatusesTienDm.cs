@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DNATestingSystem.Repository.TienDM.Models;
 
@@ -15,5 +16,6 @@ public partial class AppointmentStatusesTienDm
 
     public bool? IsActive { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<AppointmentsTienDm> AppointmentsTienDms { get; set; } = new List<AppointmentsTienDm>();
 }

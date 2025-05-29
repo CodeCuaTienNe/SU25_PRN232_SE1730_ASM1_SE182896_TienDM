@@ -19,26 +19,68 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var appointments = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServiceName)
-                .Include(a => a.UserName)
-                .Include(a => a.SamplingMethod)
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
+                .Select(a => new AppointmentsTienDm
+                {
+                    AppointmentsTienDmid = a.AppointmentsTienDmid,
+                    UserAccountId = a.UserAccountId,
+                    ServicesNhanVtid = a.ServicesNhanVtid,
+                    AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
+                    AppointmentDate = a.AppointmentDate,
+                    AppointmentTime = a.AppointmentTime,
+                    SamplingMethod = a.SamplingMethod,
+                    Address = a.Address,
+                    ContactPhone = a.ContactPhone,
+                    Notes = a.Notes,
+                    CreatedDate = a.CreatedDate,
+                    ModifiedDate = a.ModifiedDate,
+                    TotalAmount = a.TotalAmount,
+                    IsPaid = a.IsPaid,
+                    // Populate display properties
+                    ServiceName = a.ServicesNhanVt.ServiceName,
+                    StatusName = a.AppointmentStatusesTienDm.StatusName,
+                    UserName = a.UserAccount.FullName
+                })
                 .ToListAsync();
             return appointments ?? new List<AppointmentsTienDm>();
         }        public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             var appointment = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServiceName)
-                .Include(a => a.UserName)
-                .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
+                .Where(a => a.AppointmentsTienDmid == id)
+                .Select(a => new AppointmentsTienDm
+                {
+                    AppointmentsTienDmid = a.AppointmentsTienDmid,
+                    UserAccountId = a.UserAccountId,
+                    ServicesNhanVtid = a.ServicesNhanVtid,
+                    AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
+                    AppointmentDate = a.AppointmentDate,
+                    AppointmentTime = a.AppointmentTime,
+                    SamplingMethod = a.SamplingMethod,
+                    Address = a.Address,
+                    ContactPhone = a.ContactPhone,
+                    Notes = a.Notes,
+                    CreatedDate = a.CreatedDate,
+                    ModifiedDate = a.ModifiedDate,
+                    TotalAmount = a.TotalAmount,
+                    IsPaid = a.IsPaid,
+                    // Populate display properties
+                    ServiceName = a.ServicesNhanVt.ServiceName,
+                    StatusName = a.AppointmentStatusesTienDm.StatusName,
+                    UserName = a.UserAccount.FullName
+                })
+                .FirstOrDefaultAsync();
             return appointment ?? new AppointmentsTienDm();
         }        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
             // Build the query without executing it
             var query = _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServiceName)
-                .Include(a => a.UserName)
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
                     && (id == 0 || a.AppointmentsTienDmid == id));
@@ -49,10 +91,31 @@ namespace DNATestingSystem.Repository.TienDM
             // Calculate total pages
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             
-            // Apply pagination
+            // Apply pagination and projection
             var appointments = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
+                .Select(a => new AppointmentsTienDm
+                {
+                    AppointmentsTienDmid = a.AppointmentsTienDmid,
+                    UserAccountId = a.UserAccountId,
+                    ServicesNhanVtid = a.ServicesNhanVtid,
+                    AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
+                    AppointmentDate = a.AppointmentDate,
+                    AppointmentTime = a.AppointmentTime,
+                    SamplingMethod = a.SamplingMethod,
+                    Address = a.Address,
+                    ContactPhone = a.ContactPhone,
+                    Notes = a.Notes,
+                    CreatedDate = a.CreatedDate,
+                    ModifiedDate = a.ModifiedDate,
+                    TotalAmount = a.TotalAmount,
+                    IsPaid = a.IsPaid,
+                    // Populate display properties
+                    ServiceName = a.ServicesNhanVt.ServiceName,
+                    StatusName = a.AppointmentStatusesTienDm.StatusName,
+                    UserName = a.UserAccount.FullName
+                })
                 .ToListAsync();
 
             return new PaginationResult<List<AppointmentsTienDm>>
