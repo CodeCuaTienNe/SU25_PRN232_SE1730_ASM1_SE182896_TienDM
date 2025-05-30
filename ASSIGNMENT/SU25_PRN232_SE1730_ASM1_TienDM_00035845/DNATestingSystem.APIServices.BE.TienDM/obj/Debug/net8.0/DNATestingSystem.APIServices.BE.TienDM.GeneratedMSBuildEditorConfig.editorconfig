@@ -17,27 +17,3 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = D:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM
 build_property._RazorSourceGeneratorDebug = 
-
-[D:/TIEN'S LIBRABRY/STUDY/PRN232/PRN232_TienHover_Assignement/ASSIGNMENT/SU25_PRN232_SE1730_ASM1_TienDM_00035845/DNATestingSystem.APIServices.BE.TienDM/Views/AppointmentsTienDms/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzVGllbkRtc1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TIEN'S LIBRABRY/STUDY/PRN232/PRN232_TienHover_Assignement/ASSIGNMENT/SU25_PRN232_SE1730_ASM1_TienDM_00035845/DNATestingSystem.APIServices.BE.TienDM/Views/AppointmentsTienDms/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzVGllbkRtc1xEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TIEN'S LIBRABRY/STUDY/PRN232/PRN232_TienHover_Assignement/ASSIGNMENT/SU25_PRN232_SE1730_ASM1_TienDM_00035845/DNATestingSystem.APIServices.BE.TienDM/Views/AppointmentsTienDms/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzVGllbkRtc1xEZXRhaWxzLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TIEN'S LIBRABRY/STUDY/PRN232/PRN232_TienHover_Assignement/ASSIGNMENT/SU25_PRN232_SE1730_ASM1_TienDM_00035845/DNATestingSystem.APIServices.BE.TienDM/Views/AppointmentsTienDms/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzVGllbkRtc1xFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TIEN'S LIBRABRY/STUDY/PRN232/PRN232_TienHover_Assignement/ASSIGNMENT/SU25_PRN232_SE1730_ASM1_TienDM_00035845/DNATestingSystem.APIServices.BE.TienDM/Views/AppointmentsTienDms/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzVGllbkRtc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/TIEN'S LIBRABRY/STUDY/PRN232/PRN232_TienHover_Assignement/ASSIGNMENT/SU25_PRN232_SE1730_ASM1_TienDM_00035845/DNATestingSystem.APIServices.BE.TienDM/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 

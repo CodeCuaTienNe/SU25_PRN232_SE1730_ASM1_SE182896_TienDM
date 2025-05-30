@@ -29,20 +29,9 @@ public partial class AppointmentsTienDm
 
     public DateTime? CreatedDate { get; set; }
 
-    public DateTime? ModifiedDate { get; set; }
+    public DateTime? ModifiedDate { get; set; }    public decimal TotalAmount { get; set; }
 
-    public decimal TotalAmount { get; set; }
-
-
-    public bool? IsPaid { get; set; }    // Add display properties for joined data
-    [NotMapped]
-    public string? ServiceName { get; set; }
-    
-    [NotMapped]
-    public string? StatusName { get; set; }
-    
-    [NotMapped]
-    public string? UserName { get; set; }    // Ignore navigation properties to prevent circular reference
+    public bool? IsPaid { get; set; }
 
 
     [JsonIgnore]

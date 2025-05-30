@@ -18,69 +18,26 @@ namespace DNATestingSystem.Repository.TienDM
         public AppointmentsTienDmRepository(SE18_PRN232_SE1730_G3_DNATestingSystemContext context) => _context = context;        public new async Task<List<AppointmentsTienDm>> GetAllAsync()
         {
             var appointments = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
-                .Select(a => new AppointmentsTienDm
-                {
-                    AppointmentsTienDmid = a.AppointmentsTienDmid,
-                    UserAccountId = a.UserAccountId,
-                    ServicesNhanVtid = a.ServicesNhanVtid,
-                    AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
-                    AppointmentDate = a.AppointmentDate,
-                    AppointmentTime = a.AppointmentTime,
-                    SamplingMethod = a.SamplingMethod,
-                    Address = a.Address,
-                    ContactPhone = a.ContactPhone,
-                    Notes = a.Notes,
-                    CreatedDate = a.CreatedDate,
-                    ModifiedDate = a.ModifiedDate,
-                    TotalAmount = a.TotalAmount,
-                    IsPaid = a.IsPaid,
-                    // Populate display properties
-                    ServiceName = a.ServicesNhanVt.ServiceName,
-                    StatusName = a.AppointmentStatusesTienDm.StatusName,
-                    UserName = a.UserAccount.FullName
-                })
+                .Include(a => a.AppointmentStatusesTienDm.StatusName)
+                .Include(a => a.ServicesNhanVt.ServiceName)
+                .Include(a => a.UserAccount.UserName)
                 .ToListAsync();
             return appointments ?? new List<AppointmentsTienDm>();
         }        public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             var appointment = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
-                .Where(a => a.AppointmentsTienDmid == id)
-                .Select(a => new AppointmentsTienDm
-                {
-                    AppointmentsTienDmid = a.AppointmentsTienDmid,
-                    UserAccountId = a.UserAccountId,
-                    ServicesNhanVtid = a.ServicesNhanVtid,
-                    AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
-                    AppointmentDate = a.AppointmentDate,
-                    AppointmentTime = a.AppointmentTime,
-                    SamplingMethod = a.SamplingMethod,
-                    Address = a.Address,
-                    ContactPhone = a.ContactPhone,
-                    Notes = a.Notes,
-                    CreatedDate = a.CreatedDate,
-                    ModifiedDate = a.ModifiedDate,
-                    TotalAmount = a.TotalAmount,
-                    IsPaid = a.IsPaid,
-                    // Populate display properties
-                    ServiceName = a.ServicesNhanVt.ServiceName,
-                    StatusName = a.AppointmentStatusesTienDm.StatusName,
-                    UserName = a.UserAccount.FullName
-                })
-                .FirstOrDefaultAsync();
+                .Include(a => a.AppointmentStatusesTienDm.StatusName)
+                .Include(a => a.ServicesNhanVt.ServiceName)
+                .Include(a => a.UserAccount.UserName)
+                .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
             return appointment ?? new AppointmentsTienDm();
         }        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
             // Build the query without executing it
             var query = _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
+                .Include(a => a.AppointmentStatusesTienDm.StatusName)
+                .Include(a => a.ServicesNhanVt.ServiceName)
+                .Include(a => a.UserAccount.UserName)
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
                     && (id == 0 || a.AppointmentsTienDmid == id));
@@ -91,31 +48,10 @@ namespace DNATestingSystem.Repository.TienDM
             // Calculate total pages
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             
-            // Apply pagination and projection
+            // Apply pagination
             var appointments = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(a => new AppointmentsTienDm
-                {
-                    AppointmentsTienDmid = a.AppointmentsTienDmid,
-                    UserAccountId = a.UserAccountId,
-                    ServicesNhanVtid = a.ServicesNhanVtid,
-                    AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
-                    AppointmentDate = a.AppointmentDate,
-                    AppointmentTime = a.AppointmentTime,
-                    SamplingMethod = a.SamplingMethod,
-                    Address = a.Address,
-                    ContactPhone = a.ContactPhone,
-                    Notes = a.Notes,
-                    CreatedDate = a.CreatedDate,
-                    ModifiedDate = a.ModifiedDate,
-                    TotalAmount = a.TotalAmount,
-                    IsPaid = a.IsPaid,
-                    // Populate display properties
-                    ServiceName = a.ServicesNhanVt.ServiceName,
-                    StatusName = a.AppointmentStatusesTienDm.StatusName,
-                    UserName = a.UserAccount.FullName
-                })
                 .ToListAsync();
 
             return new PaginationResult<List<AppointmentsTienDm>>

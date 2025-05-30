@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.Services.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.Repository.TienDM", "DNATestingSystem.Repository.TienDM\DNATestingSystem.Repository.TienDM.csproj", "{77D31821-DCFA-4082-BE1E-DE80BF5828CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.MVCWebApp.FE.TienDM", "DNATestingSystem.MVCWebApp.FE.TienDM\DNATestingSystem.MVCWebApp.FE.TienDM.csproj", "{E66319DF-D7FF-4C40-92B8-EF868EE037E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.MVCWebApp.FE.TienDM", "DNATestingSystem.MVCWebApp.FE.TienDM\DNATestingSystem.MVCWebApp.FE.TienDM.csproj", "{C02416E6-3F20-45C2-B881-8247BA01E41E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{77D31821-DCFA-4082-BE1E-DE80BF5828CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77D31821-DCFA-4082-BE1E-DE80BF5828CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77D31821-DCFA-4082-BE1E-DE80BF5828CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E66319DF-D7FF-4C40-92B8-EF868EE037E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E66319DF-D7FF-4C40-92B8-EF868EE037E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E66319DF-D7FF-4C40-92B8-EF868EE037E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E66319DF-D7FF-4C40-92B8-EF868EE037E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C02416E6-3F20-45C2-B881-8247BA01E41E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02416E6-3F20-45C2-B881-8247BA01E41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02416E6-3F20-45C2-B881-8247BA01E41E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02416E6-3F20-45C2-B881-8247BA01E41E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
