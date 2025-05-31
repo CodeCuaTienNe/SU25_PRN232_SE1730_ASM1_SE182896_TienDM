@@ -18,26 +18,26 @@ namespace DNATestingSystem.Repository.TienDM
         public AppointmentsTienDmRepository(SE18_PRN232_SE1730_G3_DNATestingSystemContext context) => _context = context;        public new async Task<List<AppointmentsTienDm>> GetAllAsync()
         {
             var appointments = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm.StatusName)
-                .Include(a => a.ServicesNhanVt.ServiceName)
-                .Include(a => a.UserAccount.UserName)
+                .Include(a => a.AppointmentStatusesTienDm)
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
                 .ToListAsync();
             return appointments ?? new List<AppointmentsTienDm>();
         }        public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             var appointment = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm.StatusName)
-                .Include(a => a.ServicesNhanVt.ServiceName)
-                .Include(a => a.UserAccount.UserName)
+                .Include(a => a.AppointmentStatusesTienDm)
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
                 .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
             return appointment ?? new AppointmentsTienDm();
         }        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
             // Build the query without executing it
             var query = _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm.StatusName)
-                .Include(a => a.ServicesNhanVt.ServiceName)
-                .Include(a => a.UserAccount.UserName)
+                .Include(a => a.AppointmentStatusesTienDm)
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
                     && (id == 0 || a.AppointmentsTienDmid == id));

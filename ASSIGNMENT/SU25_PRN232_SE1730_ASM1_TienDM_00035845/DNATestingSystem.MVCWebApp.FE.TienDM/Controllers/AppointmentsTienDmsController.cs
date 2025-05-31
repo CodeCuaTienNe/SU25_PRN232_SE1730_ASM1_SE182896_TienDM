@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DNATestingSystem.Repository.TienDM.DBContext;
 using DNATestingSystem.Repository.TienDM.Models;
 
-namespace DNATestingSystem.MVCWebApp.FE.TienDM
+namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
 {
     public class AppointmentsTienDmsController : Controller
     {
@@ -61,7 +61,7 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppointmentsTienDmid,UserAccountId,ServicesNhanVtid,AppointmentStatusesTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,ModifiedDate,TotalAmount,IsPaid,ServiceName,StatusName,UserName")] AppointmentsTienDm appointmentsTienDm)
+        public async Task<IActionResult> Create([Bind("AppointmentsTienDmid,UserAccountId,ServicesNhanVtid,AppointmentStatusesTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,ModifiedDate,TotalAmount,IsPaid")] AppointmentsTienDm appointmentsTienDm)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AppointmentsTienDmid,UserAccountId,ServicesNhanVtid,AppointmentStatusesTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,ModifiedDate,TotalAmount,IsPaid,ServiceName,StatusName,UserName")] AppointmentsTienDm appointmentsTienDm)
+        public async Task<IActionResult> Edit(int id, [Bind("AppointmentsTienDmid,UserAccountId,ServicesNhanVtid,AppointmentStatusesTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,ModifiedDate,TotalAmount,IsPaid")] AppointmentsTienDm appointmentsTienDm)
         {
             if (id != appointmentsTienDm.AppointmentsTienDmid)
             {
