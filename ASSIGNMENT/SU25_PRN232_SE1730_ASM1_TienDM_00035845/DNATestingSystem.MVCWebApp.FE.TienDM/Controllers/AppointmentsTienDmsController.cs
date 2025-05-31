@@ -7,23 +7,51 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DNATestingSystem.Repository.TienDM.DBContext;
 using DNATestingSystem.Repository.TienDM.Models;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
 {
+    /// <summary>
+    /// AppointmentsTienDms Controller - API Integration Status:
+    /// ✓ ACTIVE API CALLS: GetAll (Index), GetById (Details)
+    /// ⚠ COMMENTED API CALLS: Create, Update/Edit, Delete, Search
+    /// 
+    /// The commented API calls contain full implementation for future use.
+    /// Currently using temporary placeholders that redirect to Index.
+    /// </summary>
+    [Authorize]
     public class AppointmentsTienDmsController : Controller
     {
-        private readonly SE18_PRN232_SE1730_G3_DNATestingSystemContext _context;
+        private string APIEndPoint = "http://localhost:8080/api/";
 
-        public AppointmentsTienDmsController(SE18_PRN232_SE1730_G3_DNATestingSystemContext context)
-        {
-            _context = context;
-        }
+        public AppointmentsTienDmsController() { }
 
         // GET: AppointmentsTienDms
         public async Task<IActionResult> Index()
         {
-            var sE18_PRN232_SE1730_G3_DNATestingSystemContext = _context.AppointmentsTienDms.Include(a => a.AppointmentStatusesTienDm).Include(a => a.ServicesNhanVt).Include(a => a.UserAccount);
-            return View(await sE18_PRN232_SE1730_G3_DNATestingSystemContext.ToListAsync());
+            using (var httpClient = new HttpClient())
+            {
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+                using (var response = await httpClient.GetAsync(APIEndPoint + "AppointmentsTienDM"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<List<AppointmentsTienDm>>(content);
+
+                        if (result != null)
+                        {
+                            return View(result);
+                        }
+                    }
+                }
+            }
+
+            return View(new List<AppointmentsTienDm>());
         }
 
         // GET: AppointmentsTienDms/Details/5
@@ -34,44 +62,65 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                 return NotFound();
             }
 
-            var appointmentsTienDm = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
-                .FirstOrDefaultAsync(m => m.AppointmentsTienDmid == id);
-            if (appointmentsTienDm == null)
+            using (var httpClient = new HttpClient())
             {
-                return NotFound();
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                using (var response = await httpClient.GetAsync(APIEndPoint + $"AppointmentsTienDM/{id}"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var appointment = JsonConvert.DeserializeObject<AppointmentsTienDm>(content);
+                        return View(appointment);
+                    }
+                }
             }
 
-            return View(appointmentsTienDm);
-        }
-
-        // GET: AppointmentsTienDms/Create
-        public IActionResult Create()
+            return NotFound();
+        }        // GET: AppointmentsTienDms/Create
+        public async Task<IActionResult> Create()
         {
-            ViewData["AppointmentStatusesTienDmid"] = new SelectList(_context.AppointmentStatusesTienDms, "AppointmentStatusesTienDmid", "StatusName");
-            ViewData["ServicesNhanVtid"] = new SelectList(_context.ServicesNhanVts, "ServicesNhanVtid", "ServiceName");
-            ViewData["UserAccountId"] = new SelectList(_context.SystemUserAccounts, "UserAccountId", "Email");
+            await LoadDropdownsAsync();
             return View();
         }
 
         // POST: AppointmentsTienDms/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppointmentsTienDmid,UserAccountId,ServicesNhanVtid,AppointmentStatusesTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,ModifiedDate,TotalAmount,IsPaid")] AppointmentsTienDm appointmentsTienDm)
+        public async Task<IActionResult> Create([Bind("AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,TotalAmount,IsPaid,AppointmentStatusesTienDmid,ServicesNhanVtid,UserAccountId")] AppointmentsTienDm appointmentsTienDm)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(appointmentsTienDm);
-                await _context.SaveChangesAsync();
+                // TODO: Implement create logic (temporarily return to index)
                 return RedirectToAction(nameof(Index));
+
+                // API Call Implementation (commented for future use)
+                /*
+                using (var httpClient = new HttpClient())
+                {
+                    var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                    appointmentsTienDm.CreatedDate = DateTime.Now;
+                    appointmentsTienDm.ModifiedDate = DateTime.Now;
+
+                    var json = JsonConvert.SerializeObject(appointmentsTienDm);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    using (var response = await httpClient.PostAsync(APIEndPoint + "AppointmentsTienDM", content))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction(nameof(Index));
+                        }
+                    }
+                }
+                */
             }
-            ViewData["AppointmentStatusesTienDmid"] = new SelectList(_context.AppointmentStatusesTienDms, "AppointmentStatusesTienDmid", "StatusName", appointmentsTienDm.AppointmentStatusesTienDmid);
-            ViewData["ServicesNhanVtid"] = new SelectList(_context.ServicesNhanVts, "ServicesNhanVtid", "ServiceName", appointmentsTienDm.ServicesNhanVtid);
-            ViewData["UserAccountId"] = new SelectList(_context.SystemUserAccounts, "UserAccountId", "Email", appointmentsTienDm.UserAccountId);
+
+            await LoadDropdownsAsync();
             return View(appointmentsTienDm);
         }
 
@@ -83,23 +132,29 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                 return NotFound();
             }
 
-            var appointmentsTienDm = await _context.AppointmentsTienDms.FindAsync(id);
-            if (appointmentsTienDm == null)
+            using (var httpClient = new HttpClient())
             {
-                return NotFound();
-            }
-            ViewData["AppointmentStatusesTienDmid"] = new SelectList(_context.AppointmentStatusesTienDms, "AppointmentStatusesTienDmid", "StatusName", appointmentsTienDm.AppointmentStatusesTienDmid);
-            ViewData["ServicesNhanVtid"] = new SelectList(_context.ServicesNhanVts, "ServicesNhanVtid", "ServiceName", appointmentsTienDm.ServicesNhanVtid);
-            ViewData["UserAccountId"] = new SelectList(_context.SystemUserAccounts, "UserAccountId", "Email", appointmentsTienDm.UserAccountId);
-            return View(appointmentsTienDm);
-        }
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
 
-        // POST: AppointmentsTienDms/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+                using (var response = await httpClient.GetAsync(APIEndPoint + $"AppointmentsTienDM/{id}"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var appointment = JsonConvert.DeserializeObject<AppointmentsTienDm>(content);
+
+                        await LoadDropdownsAsync();
+                        return View(appointment);
+                    }
+                }
+            }
+
+            return NotFound();
+        }        // POST: AppointmentsTienDms/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AppointmentsTienDmid,UserAccountId,ServicesNhanVtid,AppointmentStatusesTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,ModifiedDate,TotalAmount,IsPaid")] AppointmentsTienDm appointmentsTienDm)
+        public async Task<IActionResult> Edit(int id, [Bind("AppointmentsTienDmid,AppointmentDate,AppointmentTime,SamplingMethod,Address,ContactPhone,Notes,CreatedDate,TotalAmount,IsPaid,AppointmentStatusesTienDmid,ServicesNhanVtid,UserAccountId")] AppointmentsTienDm appointmentsTienDm)
         {
             if (id != appointmentsTienDm.AppointmentsTienDmid)
             {
@@ -108,27 +163,33 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(appointmentsTienDm);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AppointmentsTienDmExists(appointmentsTienDm.AppointmentsTienDmid))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                // TODO: Implement edit logic (temporarily return to index)
                 return RedirectToAction(nameof(Index));
+
+                // API Call Implementation (commented for future use)
+                /*
+                using (var httpClient = new HttpClient())
+                {
+                    var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                    appointmentsTienDm.ModifiedDate = DateTime.Now;
+
+                    var json = JsonConvert.SerializeObject(appointmentsTienDm);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    using (var response = await httpClient.PutAsync(APIEndPoint + $"AppointmentsTienDM/{id}", content))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction(nameof(Index));
+                        }
+                    }
+                }
+                */
             }
-            ViewData["AppointmentStatusesTienDmid"] = new SelectList(_context.AppointmentStatusesTienDms, "AppointmentStatusesTienDmid", "StatusName", appointmentsTienDm.AppointmentStatusesTienDmid);
-            ViewData["ServicesNhanVtid"] = new SelectList(_context.ServicesNhanVts, "ServicesNhanVtid", "ServiceName", appointmentsTienDm.ServicesNhanVtid);
-            ViewData["UserAccountId"] = new SelectList(_context.SystemUserAccounts, "UserAccountId", "Email", appointmentsTienDm.UserAccountId);
+
+            await LoadDropdownsAsync();
             return View(appointmentsTienDm);
         }
 
@@ -140,37 +201,135 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                 return NotFound();
             }
 
-            var appointmentsTienDm = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
-                .FirstOrDefaultAsync(m => m.AppointmentsTienDmid == id);
-            if (appointmentsTienDm == null)
+            using (var httpClient = new HttpClient())
             {
-                return NotFound();
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                using (var response = await httpClient.GetAsync(APIEndPoint + $"AppointmentsTienDM/{id}"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var appointment = JsonConvert.DeserializeObject<AppointmentsTienDm>(content);
+                        return View(appointment);
+                    }
+                }
             }
 
-            return View(appointmentsTienDm);
-        }
-
-        // POST: AppointmentsTienDms/Delete/5
+            return NotFound();
+        }        // POST: AppointmentsTienDms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var appointmentsTienDm = await _context.AppointmentsTienDms.FindAsync(id);
-            if (appointmentsTienDm != null)
+            // TODO: Implement delete logic (temporarily return to index)
+            return RedirectToAction(nameof(Index));
+
+            // API Call Implementation (commented for future use)
+            /*
+            using (var httpClient = new HttpClient())
             {
-                _context.AppointmentsTienDms.Remove(appointmentsTienDm);
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                using (var response = await httpClient.DeleteAsync(APIEndPoint + $"AppointmentsTienDM/{id}"))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                }
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+            */
         }
 
-        private bool AppointmentsTienDmExists(int id)
+        // GET: AppointmentsTienDms/Search
+        public async Task<IActionResult> Search(string searchTerm, DateTime? fromDate, DateTime? toDate)
         {
-            return _context.AppointmentsTienDms.Any(e => e.AppointmentsTienDmid == id);
+            // TODO: Implement search logic (temporarily return all)
+            return await Index();
+
+            // API Call Implementation (commented for future use)
+            /*
+            using (var httpClient = new HttpClient())
+            {
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                var searchQuery = $"?searchTerm={searchTerm}";
+                if (fromDate.HasValue)
+                    searchQuery += $"&fromDate={fromDate.Value:yyyy-MM-dd}";
+                if (toDate.HasValue)
+                    searchQuery += $"&toDate={toDate.Value:yyyy-MM-dd}";
+
+                using (var response = await httpClient.GetAsync(APIEndPoint + "AppointmentsTienDM/Search" + searchQuery))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<List<AppointmentsTienDm>>(content);
+
+                        if (result != null)
+                        {
+                            return View("Index", result);
+                        }
+                    }
+                }
+            }
+
+            return View("Index", new List<AppointmentsTienDm>());
+            */
+        }
+
+        private async Task LoadDropdownsAsync()
+        {
+            // Load dropdown data from APIs
+            using (var httpClient = new HttpClient())
+            {
+                var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
+
+                // Load appointment statuses
+                try
+                {
+                    using (var response = await httpClient.GetAsync(APIEndPoint + "AppointmentStatusesTienDM"))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var content = await response.Content.ReadAsStringAsync();
+                            var statuses = JsonConvert.DeserializeObject<List<AppointmentStatusesTienDm>>(content);
+                            ViewData["AppointmentStatusesTienDmid"] = new SelectList(statuses, "AppointmentStatusesTienDmid", "StatusName");
+                        }
+                    }
+                }
+                catch
+                {
+                    ViewData["AppointmentStatusesTienDmid"] = new SelectList(new List<AppointmentStatusesTienDm>(), "AppointmentStatusesTienDmid", "StatusName");
+                }                // Load services - assuming there's an API endpoint
+                try
+                {
+                    // Note: You may need to adjust this endpoint based on your actual API
+                    ViewData["ServicesNhanVtid"] = new SelectList(new List<object>(), "Id", "Name");
+                }
+                catch
+                {
+                    ViewData["ServicesNhanVtid"] = new SelectList(new List<object>(), "Id", "Name");
+                }
+
+                // Load user accounts - for admin use
+                try
+                {
+                    // Note: You may need to adjust this endpoint based on your actual API  
+                    ViewData["UserAccountId"] = new SelectList(new List<object>(), "Id", "Email");
+                }
+                catch
+                {
+                    ViewData["UserAccountId"] = new SelectList(new List<object>(), "Id", "Email");
+                }
+            }
         }
     }
 }

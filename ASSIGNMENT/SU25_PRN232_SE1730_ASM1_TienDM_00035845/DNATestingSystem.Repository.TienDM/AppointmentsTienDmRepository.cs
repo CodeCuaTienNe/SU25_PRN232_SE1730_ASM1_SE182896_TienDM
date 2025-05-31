@@ -15,7 +15,7 @@ namespace DNATestingSystem.Repository.TienDM
     public class AppointmentsTienDmRepository : GenericRepository<AppointmentsTienDm>
     {
         public AppointmentsTienDmRepository() { }
-        public AppointmentsTienDmRepository(SE18_PRN232_SE1730_G3_DNATestingSystemContext context) => _context = context;        public new async Task<List<AppointmentsTienDm>> GetAllAsync()
+        public AppointmentsTienDmRepository(SE18_PRN232_SE1730_G3_DNATestingSystemContext context) => _context = context; public new async Task<List<AppointmentsTienDm>> GetAllAsync()
         {
             var appointments = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
@@ -23,7 +23,8 @@ namespace DNATestingSystem.Repository.TienDM
                 .Include(a => a.UserAccount)
                 .ToListAsync();
             return appointments ?? new List<AppointmentsTienDm>();
-        }        public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
+        }
+        public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             var appointment = await _context.AppointmentsTienDms
                 .Include(a => a.AppointmentStatusesTienDm)
@@ -31,7 +32,8 @@ namespace DNATestingSystem.Repository.TienDM
                 .Include(a => a.UserAccount)
                 .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
             return appointment ?? new AppointmentsTienDm();
-        }        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
+        }
+        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
             // Build the query without executing it
             var query = _context.AppointmentsTienDms
@@ -44,10 +46,10 @@ namespace DNATestingSystem.Repository.TienDM
 
             // Get total count for pagination
             var totalItems = await query.CountAsync();
-            
+
             // Calculate total pages
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            
+
             // Apply pagination
             var appointments = await query
                 .Skip((page - 1) * pageSize)

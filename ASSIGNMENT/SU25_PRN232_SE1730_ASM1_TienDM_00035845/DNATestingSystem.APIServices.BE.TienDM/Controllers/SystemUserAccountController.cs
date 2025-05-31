@@ -19,37 +19,24 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         {
             _config = config;
             _userAccountsService = userAccountsService;
-        }
-
-        [HttpPost("Login")]
+        }        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var user = await _userAccountsService.GetUserAccount(request.UserName, request.Password);
 
             if (user == null)
-            //    return Unauthorized(new { message = "Invalid username or password" });
+                return Unauthorized(new { message = "Invalid username or password" });
 
-            //// Check if user role is 1 or 2 (only these roles can access login)
-            //if (user.RoleId != 1 && user.RoleId != 2)
-            //    return StatusCode(403, new { message = "Access denied. Only administrators and staff can login." });
+            // Check if user role is 1 or 2 (only these roles can access login)
+            if (user.RoleId != 1 && user.RoleId != 2)
+                return StatusCode(403, new { message = "Access denied. Only administrators and staff can login." });
 
-            //// Check if user account is active
-            //if (!user.IsActive)
+            // Check if user account is active
+            if (!user.IsActive)
                 return Unauthorized(new { message = "Account is deactivated" });
 
             var token = GenerateJSONWebToken(user);
 
-            //return Ok(new { 
-            //    token = token,
-            //    user = new {
-            //        userId = user.UserAccountId,
-            //        userName = user.UserName,
-            //        fullName = user.FullName,
-            //        email = user.Email,
-            //        role = user.RoleId
-            //    },
-            //    expiresIn = 120 // minutes
-            //});
             return Ok(token);
         }
 
