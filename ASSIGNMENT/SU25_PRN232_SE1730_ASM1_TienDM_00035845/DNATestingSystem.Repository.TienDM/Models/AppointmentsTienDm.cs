@@ -29,20 +29,19 @@ public partial class AppointmentsTienDm
 
     public DateTime? CreatedDate { get; set; }
 
-    public DateTime? ModifiedDate { get; set; }    public decimal TotalAmount { get; set; }
+    public DateTime? ModifiedDate { get; set; }
+    public decimal TotalAmount { get; set; }
 
     public bool? IsPaid { get; set; }
+    // Navigation properties - Remove JsonIgnore to allow serialization for display
+    public virtual AppointmentStatusesTienDm? AppointmentStatusesTienDm { get; set; }
 
-
-    [JsonIgnore]
-    public virtual AppointmentStatusesTienDm AppointmentStatusesTienDm { get; set; } = null!;
-
-    [JsonIgnore]
+    [JsonIgnore] // Keep this ignored as it's not needed for display
     public virtual ICollection<SampleThinhLc> SampleThinhLcs { get; set; } = new List<SampleThinhLc>();
 
-    [JsonIgnore]
-    public virtual ServicesNhanVt ServicesNhanVt { get; set; } = null!;
+    // Navigation properties - Remove JsonIgnore to allow serialization for display
+    public virtual ServicesNhanVt? ServicesNhanVt { get; set; }
 
-    [JsonIgnore]
-    public virtual SystemUserAccount UserAccount { get; set; } = null!;
+    // Navigation properties - Remove JsonIgnore to allow serialization for display  
+    public virtual SystemUserAccount? UserAccount { get; set; }
 }

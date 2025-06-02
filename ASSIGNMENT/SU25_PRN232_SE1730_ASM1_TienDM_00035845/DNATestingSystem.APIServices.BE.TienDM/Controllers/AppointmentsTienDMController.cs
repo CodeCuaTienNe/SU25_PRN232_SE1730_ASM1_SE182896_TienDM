@@ -19,16 +19,16 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         public AppointmentsTienDMController(IAppointmentsTienDmService appointmentsTienDmService)
         {
             _appointmentsTienDmService = appointmentsTienDmService;
-        }        
-        
+        }
+
         // GET api/AppointmentsTienDM - Get all appointments
         [HttpGet]
         public async Task<ActionResult<List<AppointmentsTienDm>>> GetAll()
         {
             var appointments = await _appointmentsTienDmService.GetAllAsync();
             return Ok(appointments);
-        }        
-        
+        }
+
         // GET api/AppointmentsTienDM/paginated - Get all appointments with pagination
         [HttpGet("paginated")]
         public async Task<ActionResult<PaginationResult<List<AppointmentsTienDm>>>> GetAllPaginated(
@@ -50,14 +50,23 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             return Ok(appointment);
         }
 
-
-
         // POST api/AppointmentsTienDM - Create new appointment
         [HttpPost]
         public async Task<ActionResult<int>> Create([FromBody] AppointmentsTienDm entity)
         {
             // Ensure ID is not set (auto-generated)
             entity.AppointmentsTienDmid = 0;
+
+            // Auto-assign UserAccountId from JWT token
+            var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == "UserId");
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                entity.UserAccountId = userId;
+            }
+            else
+            {
+                return BadRequest("User ID not found in token or invalid format");
+            }
 
             var result = await _appointmentsTienDmService.CreateAsync(entity);
             if (result > 0)
@@ -76,8 +85,8 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             if (result > 0)
                 return Ok(result);
             return NotFound();
-        }     
-           // DELETE api/AppointmentsTienDM/{id} - Delete appointment
+        }
+        // DELETE api/AppointmentsTienDM/{id} - Delete appointment
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
@@ -85,18 +94,16 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             if (result)
                 return Ok(true);
             return NotFound();
-        }       
-          // GET api/AppointmentsTienDM/search - Search appointments without pagination (returns simple list)
+        }
+        // GET api/AppointmentsTienDM/search - Search appointments
         [HttpGet("search")]
-        [Authorize(Roles = "1,2")]
         public async Task<ActionResult<List<AppointmentsTienDm>>> Search(
             [FromQuery] int id = 0,
             [FromQuery] string contactPhone = "",
             [FromQuery] decimal totalAmount = 0)
         {
-            // Get first 1000 items from search for simple list (non-paginated)
-            var result = await _appointmentsTienDmService.SearchAsync(id, contactPhone ?? "", totalAmount, 1, 1000);
-            return Ok(result.Items);
+            var result = await _appointmentsTienDmService.SearchAsync(id, contactPhone, totalAmount, 1, 1000);
+            return Ok(result?.Items ?? new List<AppointmentsTienDm>());
         }
 
         // GET api/AppointmentsTienDM/search/paginated - Search appointments with pagination

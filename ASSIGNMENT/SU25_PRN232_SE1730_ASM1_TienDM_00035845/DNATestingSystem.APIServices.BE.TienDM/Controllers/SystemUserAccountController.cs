@@ -19,7 +19,8 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         {
             _config = config;
             _userAccountsService = userAccountsService;
-        }        [HttpPost("Login")]
+        }
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var user = await _userAccountsService.GetUserAccount(request.UserName, request.Password);
@@ -39,10 +40,10 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
 
             return Ok(token);
         }
-
         private string GenerateJSONWebToken(SystemUserAccount systemUserAccount)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var jwtKey = _config["Jwt:Key"] ?? "DefaultKeyForDevelopment";
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
@@ -51,7 +52,8 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
                 new Claim[]
                 {
                     new(ClaimTypes.Name, systemUserAccount.UserName),
-                    new(ClaimTypes.Role, systemUserAccount.RoleId.ToString())
+                    new(ClaimTypes.Role, systemUserAccount.RoleId.ToString()),
+                    new("UserId", systemUserAccount.UserAccountId.ToString())
                 },
                 expires: DateTime.Now.AddMinutes(120),
                 signingCredentials: credentials

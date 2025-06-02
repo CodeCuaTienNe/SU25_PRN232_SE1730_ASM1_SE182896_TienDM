@@ -166,3 +166,7 @@ D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_000358
 D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\DNATestingSystem.APIServices.BE.TienDM.pdb
 D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\DNATestingSystem.APIServices.BE.TienDM.genruntimeconfig.cache
 D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\ref\DNATestingSystem.APIServices.BE.TienDM.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

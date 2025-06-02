@@ -1,17 +1,64 @@
-﻿@model IEnumerable<DNATestingSystem.Repository.TienDM.Models.AppointmentsTienDm>
+@model IEnumerable<DNATestingSystem.Repository.TienDM.Models.AppointmentsTienDm>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Appointments Management</h1>
+
+<!-- Search Form -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Search Appointments</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Search" method="get" class="row g-3">
+                    <div class="col-md-3">
+                        <label for="searchId" class="form-label">Appointment ID</label>
+                        <input type="number" class="form-control" id="searchId" name="id" 
+                               value="@ViewBag.SearchId" placeholder="Enter ID">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="searchContactPhone" class="form-label">Contact Phone</label>
+                        <input type="text" class="form-control" id="searchContactPhone" name="contactPhone" 
+                               value="@ViewBag.SearchContactPhone" placeholder="Enter phone number">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="searchTotalAmount" class="form-label">Total Amount</label>
+                        <input type="number" step="0.01" class="form-control" id="searchTotalAmount" name="totalAmount" 
+                               value="@ViewBag.SearchTotalAmount" placeholder="Enter amount">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <div class="btn-group w-100" role="group">
+                            <button type="submit" class="btn btn-outline-primary">
+                                Search
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                Clear
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+
+<table class="table table-striped">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentsTienDmid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPhone)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.AppointmentDate)
             </th>
@@ -19,44 +66,29 @@
                 @Html.DisplayNameFor(model => model.AppointmentTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SamplingMethod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactPhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModifiedDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.TotalAmount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsPaid)
+                Status
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AppointmentStatusesTienDm)
+                Service
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ServicesNhanVt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserAccount)
+                User Account
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentsTienDmid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPhone)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AppointmentDate)
             </td>
@@ -64,42 +96,42 @@
                 @Html.DisplayFor(modelItem => item.AppointmentTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SamplingMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModifiedDate)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.TotalAmount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsPaid)
+                @if (item.AppointmentStatusesTienDm != null)
+                {
+                    @item.AppointmentStatusesTienDm.StatusName
+                }
+                else
+                {
+                    <span class="text-muted">No Status</span>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AppointmentStatusesTienDm.StatusName)
+                @if (item.ServicesNhanVt != null)
+                {
+                    @item.ServicesNhanVt.ServiceName
+                }
+                else
+                {
+                    <span class="text-muted">No Service</span>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ServicesNhanVt.ServiceName)
+                @if (item.UserAccount != null)
+                {
+                    @item.UserAccount.UserName
+                }
+                else
+                {
+                    <span class="text-muted">No User</span>
+                }
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserAccount.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AppointmentsTienDmid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AppointmentsTienDmid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AppointmentsTienDmid">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.AppointmentsTienDmid" class="btn btn-sm btn-outline-warning">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.AppointmentsTienDmid" class="btn btn-sm btn-outline-info">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.AppointmentsTienDmid" class="btn btn-sm btn-outline-danger">Delete</a>
             </td>
         </tr>
 }

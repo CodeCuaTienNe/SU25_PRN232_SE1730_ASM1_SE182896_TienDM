@@ -1,4 +1,5 @@
 using DNATestingSystem.Services.TienDM;
+using DNATestingSystem.APIServices.BE.TienDM;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -9,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -29,12 +29,15 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IAppointmentsTienDmService, AppointmentsTienDmService>();
 builder.Services.AddScoped<IAppointmentStatusesTienDmService, AppointmentStatusesTienDmService>();
 builder.Services.AddScoped<ISystemUserAccountService, SystemUserAccountService>();
+builder.Services.AddScoped<IServicesNhanVtService, ServicesNhanVtService>();
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
+    .AddNewtonsoftJson(options =>
     {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.Never;
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+        options.SerializerSettings.Converters.Add(new NewtonsoftDateOnlyConverter());
+        options.SerializerSettings.Converters.Add(new NewtonsoftTimeOnlyConverter());
     });
 
 
@@ -50,7 +53,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? "DefaultKeyForDevelopment")),
             // ClockSkew = TimeSpan.Zero
         };
     });
