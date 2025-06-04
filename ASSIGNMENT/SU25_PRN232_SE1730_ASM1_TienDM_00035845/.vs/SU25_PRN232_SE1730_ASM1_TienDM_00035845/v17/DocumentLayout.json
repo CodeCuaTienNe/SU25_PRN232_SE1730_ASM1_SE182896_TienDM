@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
               "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
               "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAkwCwAAAA/AAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAkwC0AAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-02T04:13:43.303Z",
               "EditorCaption": ""
@@ -63,8 +63,7 @@
               "RelativeToolTip": "DNATestingSystem.MVCWebApp.FE.TienDM\\Views\\AppointmentsTienDms\\Index.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-02T03:55:29.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T03:55:29.694Z"
             },
             {
               "$type": "Document",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\AppointmentsTienDmRepository.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAACsAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-02T03:46:00.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-02T03:46:00.706Z"
             }
           ]
         }
