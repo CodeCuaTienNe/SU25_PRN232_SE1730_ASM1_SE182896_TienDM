@@ -34,8 +34,8 @@ public partial class AppointmentsTienDm
     public TimeOnly AppointmentTime { get; set; }
 
     [Required(ErrorMessage = "Sampling method is required")]
-    [StringLength(100, MinimumLength = 3, ErrorMessage = "Sampling method must be between 3 and 100 characters")]
-    [Display(Name = "Sampling Method")]
+    //[StringLength(100, MinimumLength = 3, ErrorMessage = "Sampling method must be between 3 and 100 characters")]
+    //[Display(Name = "Sampling Method")]
     public string SamplingMethod { get; set; } = null!;
 
     [StringLength(250, ErrorMessage = "Address cannot exceed 250 characters")]

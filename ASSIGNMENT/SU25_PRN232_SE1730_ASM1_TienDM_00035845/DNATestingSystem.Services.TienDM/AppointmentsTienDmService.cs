@@ -23,25 +23,30 @@ namespace DNATestingSystem.Services.TienDM
         public async Task<bool> DeleteAsync(int id)
         {
             return await _repository.DeleteAsync(id);
-        }        public async Task<List<AppointmentsTienDm>> GetAllAsync()
+        }
+        public async Task<List<AppointmentsTienDm>> GetAllAsync()
         {
             return await _repository.GetAllAsync();
         }
-
         public async Task<PaginationResult<List<AppointmentsTienDm>>> GetAllPaginatedAsync(int page, int pageSize)
         {
-            // Use search with empty parameters to get all items with pagination
-            return await _repository.SearchAsync(0, "", 0, page, pageSize) ?? new PaginationResult<List<AppointmentsTienDm>>();
+            // Use the new optimized repository method
+            return await _repository.GetAllPaginatedAsync(page, pageSize) ?? new PaginationResult<List<AppointmentsTienDm>>();
         }
 
         public async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             return await _repository.GetByIdAsync(id);
         }
-
         public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
-            var paginationResult = await _repository.SearchAsync( id,  contactPhone,  totalAmount,  page,  pageSize);
+            var paginationResult = await _repository.SearchAsync(id, contactPhone, totalAmount, page, pageSize);
+            return paginationResult ?? new PaginationResult<List<AppointmentsTienDm>>();
+        }
+
+        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(SearchAppointmentsTienDm searchRequest)
+        {
+            var paginationResult = await _repository.SearchAsync(searchRequest);
             return paginationResult ?? new PaginationResult<List<AppointmentsTienDm>>();
         }
 

@@ -11,7 +11,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "1,2")]
+    //[Authorize(Roles = "1,2")]
     public class AppointmentsTienDMController : ControllerBase
     {
         private readonly IAppointmentsTienDmService _appointmentsTienDmService;
@@ -27,16 +27,40 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         {
             var appointments = await _appointmentsTienDmService.GetAllAsync();
             return Ok(appointments);
-        }
-
-        // GET api/AppointmentsTienDM/paginated - Get all appointments with pagination
+        }        // GET api/AppointmentsTienDM/paginated - Get all appointments with pagination
         [HttpGet("paginated")]
         public async Task<ActionResult<PaginationResult<List<AppointmentsTienDm>>>> GetAllPaginated(
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10)
         {
-            // Use proper GetAllPaginated method
-            var result = await _appointmentsTienDmService.GetAllPaginatedAsync(page, pageSize);
+            // Create empty search request to get all items
+            var searchRequest = new SearchAppointmentsTienDm
+            {
+                CurrentPage = page,
+                PageSize = pageSize
+            };
+
+            var result = await _appointmentsTienDmService.SearchAsync(searchRequest);
+            return Ok(result);
+        }
+
+        // POST api/AppointmentsTienDM/paginated - Get all appointments with pagination (POST version)
+        [HttpPost("paginated")]
+        public async Task<ActionResult<PaginationResult<List<AppointmentsTienDm>>>> GetAllPaginatedPost([FromBody] PaginationRequest paginationRequest)
+        {
+            if (paginationRequest == null)
+            {
+                return BadRequest("Pagination request cannot be null");
+            }
+
+            // Create empty search request to get all items
+            var searchRequest = new SearchAppointmentsTienDm
+            {
+                CurrentPage = paginationRequest.Page ?? 1,
+                PageSize = paginationRequest.PageSize ?? 10
+            };
+
+            var result = await _appointmentsTienDmService.SearchAsync(searchRequest);
             return Ok(result);
         }
 
@@ -85,8 +109,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             if (result > 0)
                 return Ok(result);
             return NotFound();
-        }
-        // DELETE api/AppointmentsTienDM/{id} - Delete appointment
+        }        // DELETE api/AppointmentsTienDM/{id} - Delete appointment
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
@@ -95,43 +118,78 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
                 return Ok(true);
             return NotFound();
         }
-        // GET api/AppointmentsTienDM/search - Search appointments
-        [HttpGet("search")]
-        public async Task<ActionResult<List<AppointmentsTienDm>>> Search(
-            [FromQuery] int id = 0,
-            [FromQuery] string contactPhone = "",
-            [FromQuery] decimal totalAmount = 0)
+
+        // POST api/AppointmentsTienDM/search - Search appointments using SearchRequest model
+        [HttpPost("search")]
+        public async Task<ActionResult<PaginationResult<List<AppointmentsTienDm>>>> Search([FromBody] SearchAppointmentsTienDm searchRequest)
         {
-            var result = await _appointmentsTienDmService.SearchAsync(id, contactPhone, totalAmount, 1, 1000);
+            if (searchRequest == null)
+            {
+                return BadRequest("Search request cannot be null");
+            }
+
+            // Set default values for pagination if not provided
+            searchRequest.CurrentPage ??= 1;
+            searchRequest.PageSize ??= 10;
+
+            var result = await _appointmentsTienDmService.SearchAsync(searchRequest);
+            return Ok(result);
+        }        // POST api/AppointmentsTienDM/search/all - Search appointments and return all results (non-paginated)
+        [HttpPost("search/all")]
+        public async Task<ActionResult<List<AppointmentsTienDm>>> SearchAll([FromBody] SearchAppointmentsTienDm searchRequest)
+        {
+            if (searchRequest == null)
+            {
+                return BadRequest("Search request cannot be null");
+            }
+
+            // Set large page size to get all results
+            searchRequest.CurrentPage = 1;
+            searchRequest.PageSize = 10000;
+
+            var result = await _appointmentsTienDmService.SearchAsync(searchRequest);
             return Ok(result?.Items ?? new List<AppointmentsTienDm>());
         }
 
-        // GET api/AppointmentsTienDM/search/paginated - Search appointments with pagination
-        [HttpGet("search/paginated")]
-        [Authorize(Roles = "1,2")]
-        public async Task<ActionResult<PaginationResult<List<AppointmentsTienDm>>>> SearchPaginated(
-            [FromQuery] int id = 0,
-            [FromQuery] string contactPhone = "",
-            [FromQuery] decimal totalAmount = 0,
-            [FromQuery] int page = 1,
-            [FromQuery] int pageSize = 10)
+        // POST api/AppointmentsTienDM/search/simple - Simple search with basic parameters (creates SearchRequest internally)
+        [HttpPost("search/simple")]
+        public async Task<ActionResult<PaginationResult<List<AppointmentsTienDm>>>> SearchSimple([FromBody] SimpleSearchRequest request)
         {
-            // Search with pagination
-            var result = await _appointmentsTienDmService.SearchAsync(id, contactPhone ?? "", totalAmount, page, pageSize);
+            if (request == null)
+            {
+                return BadRequest("Search request cannot be null");
+            }
+
+            var searchRequest = new SearchAppointmentsTienDm
+            {
+                AppointmentsTienDmid = request.Id,
+                ContactPhone = request.ContactPhone,
+                TotalAmount = request.TotalAmount,
+                CurrentPage = request.Page ?? 1,
+                PageSize = request.PageSize ?? 10
+            };
+
+            var result = await _appointmentsTienDmService.SearchAsync(searchRequest);
             return Ok(result);
         }
+    }    /// <summary>
+         /// Simple search request model for basic search operations
+         /// </summary>
+    public class SimpleSearchRequest
+    {
+        public int? Id { get; set; }
+        public string? ContactPhone { get; set; }
+        public decimal? TotalAmount { get; set; }
+        public int? Page { get; set; } = 1;
+        public int? PageSize { get; set; } = 10;
+    }
 
-
-        // // GET api/AppointmentsTienDM/search?id=1&contactPhone=123&totalAmount=100 - Search appointments
-        // [HttpGet("search")]
-        // public async Task<ActionResult<List<AppointmentsTienDm>>> Search(
-        //    [FromQuery] int id = 0,
-        //    [FromQuery] string contactPhone = "",
-        //    [FromQuery] decimal totalAmount = 0)
-        // {
-        //    var appointments = await _appointmentsTienDmService.SearchAsync(id, contactPhone ?? "", totalAmount);
-        //    return Ok(appointments);
-        // }
-
+    /// <summary>
+    /// Pagination request model for basic pagination operations
+    /// </summary>
+    public class PaginationRequest
+    {
+        public int? Page { get; set; } = 1;
+        public int? PageSize { get; set; } = 10;
     }
 }

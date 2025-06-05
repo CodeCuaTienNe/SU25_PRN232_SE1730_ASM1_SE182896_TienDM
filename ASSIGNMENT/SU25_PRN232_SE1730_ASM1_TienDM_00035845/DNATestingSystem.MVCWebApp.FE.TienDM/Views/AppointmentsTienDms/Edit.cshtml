@@ -55,11 +55,20 @@
                                 <span asp-validation-for="AppointmentTime" class="text-danger"></span>
                             </div>
                         </div>
-                    </div>                    <div class="row">
-                        <div class="col-md-6">
+                    </div>                    <div class="row">                        <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label asp-for="SamplingMethod" class="form-label">Sampling Method</label>
-                                <input asp-for="SamplingMethod" class="form-control" placeholder="Enter sampling method" />
+                                <select asp-for="SamplingMethod" class="form-select">
+                                    <option value="">-- Select Sampling Method --</option>
+                                    <option value="Buccal Swab">Buccal Swab (Cheek Swab)</option>
+                                    <option value="Blood Sample">Blood Sample</option>
+                                    <option value="Saliva Collection">Saliva Collection</option>
+                                    <option value="Hair Follicle">Hair Follicle</option>
+                                    <option value="Nail Clipping">Nail Clipping</option>
+                                    <option value="Tissue Sample">Tissue Sample</option>
+                                    <option value="Amniotic Fluid">Amniotic Fluid (Prenatal)</option>
+                                    <option value="Chorionic Villus">Chorionic Villus Sampling (CVS)</option>
+                                </select>
                                 <span asp-validation-for="SamplingMethod" class="text-danger"></span>
                             </div>
                         </div>
