@@ -9,7 +9,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "1,2")]
+    //[Authorize(Roles = "1,2")]
     public class AppointmentStatusesTienDMController : ControllerBase
     {
         private readonly IAppointmentStatusesTienDmService _appointmentStatusesTienDmService;
@@ -35,20 +35,14 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             if (status?.AppointmentStatusesTienDmid == 0)
                 return NotFound();
             return Ok(status);
-        }
-
-        // GET api/AppointmentStatusesTienDM/active - Get all active appointment statuses
+        }        // GET api/AppointmentStatusesTienDM/active - Get all active appointment statuses
         [HttpGet("active")]
-        [Authorize(Roles = "1,2")]
         public async Task<ActionResult<List<AppointmentStatusesTienDm>>> GetActiveStatuses()
         {
             var statuses = await _appointmentStatusesTienDmService.GetActiveStatusesAsync();
             return Ok(statuses);
-        }
-
-        // GET api/AppointmentStatusesTienDM/search - Search appointment statuses
+        }        // GET api/AppointmentStatusesTienDM/search - Search appointment statuses
         [HttpGet("search")]
-        [Authorize(Roles = "1,2")]
         public async Task<ActionResult<List<AppointmentStatusesTienDm>>> Search(
             [FromQuery] int id = 0,
             [FromQuery] string statusName = "")

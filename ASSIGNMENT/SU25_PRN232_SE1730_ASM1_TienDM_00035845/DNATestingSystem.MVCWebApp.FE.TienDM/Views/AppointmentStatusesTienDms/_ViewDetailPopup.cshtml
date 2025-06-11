@@ -1,0 +1,59 @@
+<!-- View Detail Popup Modal -->
+<div class="modal fade" id="viewDetailModal" tabindex="-1" aria-labelledby="viewDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title" id="viewDetailModalLabel">
+                    📋 Appointment Status Details
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card border-0">
+                                <div class="card-body p-0">
+                                    <dl class="row mb-0">
+                                        <dt class="col-sm-4 text-muted">
+                                            🆔 ID:
+                                        </dt>
+                                        <dd class="col-sm-8" id="detailId">-</dd>
+                                        
+                                        <dt class="col-sm-4 text-muted">
+                                            🏷️ Status Name:
+                                        </dt>
+                                        <dd class="col-sm-8" id="detailStatusName">-</dd>
+                                        
+                                        <dt class="col-sm-4 text-muted">
+                                            📝 Description:
+                                        </dt>
+                                        <dd class="col-sm-8" id="detailDescription">-</dd>
+                                        
+                                        <dt class="col-sm-4 text-muted">
+                                            📅 Created Date:
+                                        </dt>
+                                        <dd class="col-sm-8" id="detailCreatedDate">-</dd>
+                                        
+                                        <dt class="col-sm-4 text-muted">
+                                            🔄 Status:
+                                        </dt>
+                                        <dd class="col-sm-8" id="detailIsActive">-</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="editFromDetailBtn">
+                    ✏️ Edit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

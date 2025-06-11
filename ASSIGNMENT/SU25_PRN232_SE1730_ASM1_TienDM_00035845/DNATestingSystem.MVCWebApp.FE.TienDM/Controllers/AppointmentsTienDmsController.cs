@@ -11,6 +11,7 @@ using DNATestingSystem.MVCWebApp.FE.TienDM.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
+using Microsoft.Identity.Client;
 
 namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
 {    /// <summary>
@@ -344,6 +345,12 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
 
             return View("Index", new List<AppointmentsTienDm>());
         }
+
+        public async Task<IActionResult> AppointmentsTienDmList()
+        {
+            return View();
+        }
+
         private async Task LoadDropdownsAsync()
         {
             // Load dropdown data from APIs
@@ -405,7 +412,9 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                 {
                     ViewData["UserAccountId"] = new SelectList(new List<SystemUserAccount>(), "SystemUserAccountId", "Email");
                 }
+                //AJAX
             }
+
         }
     }
 }

@@ -1,0 +1,415 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Appointment Statuses Management";
+}
+
+<h1>Appointment Statuses Management</h1>
+
+<div class="">
+    <button type="button" class="btn btn-primary" onclick="addNew();">
+        Add
+    </button>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Status Name</th>
+            <th>Description</th>
+            <th>Created Date</th>
+            <th>Active</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="tblBody">
+    </tbody>
+</table>
+
+<!-- Create/Edit Modal -->
+<div class="modal" id="appointmentStatusModal" tabindex="-1" aria-labelledby="appointmentStatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "frmAppointmentStatus", id = "frmAppointmentStatus" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="appointmentStatusModalLabel">Appointment Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="statusName">Status Name <span class="text-danger">*</span></label>
+                            <input type="hidden" id="appointmentStatusId" name="appointmentStatusId" value="0" />
+                            <input type="text" id="statusName" name="statusName" class="form-control" required />
+                            <div class="invalid-feedback" id="statusNameError"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" name="description" class="form-control" />
+                            <div class="invalid-feedback" id="descriptionError"></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label for="createdDate">Created Date</label>
+                            <input type="datetime-local" id="createdDate" name="createdDate" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="isActive">Is Active</label>
+                            <div class="form-check">
+                                <input type="checkbox" id="isActive" name="isActive" class="form-check-input" checked />
+                                <label class="form-check-label" for="isActive">Active</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btSave" type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Include Popup Modals -->
+@await Html.PartialAsync("_ConfirmDeletePopup")
+@await Html.PartialAsync("_ViewDetailPopup")
+
+@section Scripts {
+    <script type="text/javascript">
+        // Check if jQuery is loaded
+        if (typeof jQuery === 'undefined') {
+            console.error('jQuery is not loaded!');
+        } else {
+            console.log('jQuery is loaded successfully');
+        }
+
+        $(document).ready(function () {
+            console.log('Document ready, loading data...');
+            loadData();
+        });
+
+        function loadData() {
+            console.log("Loading appointment statuses data...");
+
+            $.ajax({
+                url: 'http://localhost:8080/api/AppointmentStatusesTienDM',
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log("Data received:", result);
+                    var html = '';
+                    
+                    if (result && result.length > 0) {
+                        $.each(result, function (key, item) {
+                            html += '<tr>';
+                            html += '<td>' + (item.statusName || '') + '</td>';
+                            html += '<td>' + (item.description || '') + '</td>';
+                            html += '<td>' + (item.createdDate ? new Date(item.createdDate).toLocaleDateString() : '') + '</td>';
+                            html += '<td>' + (item.isActive ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-secondary">Inactive</span>') + '</td>';
+                            html += '<td>';
+                            html += '<button type="button" class="btn btn-sm btn-info me-1" onclick="viewDetail(' + (item.appointmentStatusesTienDmid || 0) + ')">Detail</button>';
+                            html += '<button type="button" class="btn btn-sm btn-warning me-1" onclick="editItem(' + (item.appointmentStatusesTienDmid || 0) + ')">Edit</button>';
+                            html += '<button type="button" class="btn btn-sm btn-danger" onclick="deleteItem(' + (item.appointmentStatusesTienDmid || 0) + ')">Delete</button>';
+                            html += '</td>';
+                            html += '</tr>';
+                        });
+                    } else {
+                        html = '<tr><td colspan="5" class="text-center">No appointment statuses found</td></tr>';
+                    }
+
+                    $('.tblBody').html(html);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax error:", xhr.responseText);
+                    var errorMessage = "Failed to load appointment statuses";
+                    
+                    if (xhr.status === 0) {
+                        errorMessage = "Unable to connect to API. Please check if the API server is running.";
+                    } else if (xhr.status === 401 || xhr.status === 403) {
+                        errorMessage = "API requires authentication. Please login first.";
+                    } else if (xhr.status === 404) {
+                        errorMessage = "API endpoint not found.";
+                    } else if (xhr.status === 500) {
+                        errorMessage = "Server error occurred.";
+                    }
+                    
+                    $('.tblBody').html('<tr><td colspan="5" class="text-center text-danger">' + errorMessage + '</td></tr>');
+                    console.log("Error details:", errorMessage);
+                }
+            });
+        }
+
+        function addNew() {
+            // Reset form for create
+            $('#appointmentStatusId').val(0);
+            $('#statusName').val('');
+            $('#description').val('');
+            $('#createdDate').val('');
+            $('#isActive').prop('checked', true);
+            $('#appointmentStatusModalLabel').text('Add New Appointment Status');
+            
+            // Clear validation classes
+            $('.form-control').removeClass('is-invalid');
+            $('.invalid-feedback').text('');
+            
+            // Show modal
+            $('#appointmentStatusModal').modal('show');
+        }
+
+        function editItem(id) {
+            if (!id) return;
+            
+            // Fetch item details and populate form
+            $.ajax({
+                url: 'http://localhost:8080/api/AppointmentStatusesTienDM/' + id,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result) {
+                        // Populate form with existing data
+                        $('#appointmentStatusId').val(result.appointmentStatusesTienDmid || 0);
+                        $('#statusName').val(result.statusName || '');
+                        $('#description').val(result.description || '');
+                        $('#isActive').prop('checked', result.isActive || false);
+                        
+                        // Format and set created date if available
+                        if (result.createdDate) {
+                            var date = new Date(result.createdDate);
+                            var formattedDate = date.toISOString().slice(0, 16); // Format for datetime-local
+                            $('#createdDate').val(formattedDate);
+                        }
+                        
+                        $('#appointmentStatusModalLabel').text('Edit Appointment Status');
+                        
+                        // Clear validation classes
+                        $('.form-control').removeClass('is-invalid');
+                        $('.invalid-feedback').text('');
+                        
+                        // Show modal
+                        $('#appointmentStatusModal').modal('show');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching status details:", xhr.responseText);
+                    alert("Failed to load status details for editing: " + (xhr.responseText || error));
+                }
+            });
+        }
+
+        $("#btSave").click(function() {
+            // Get form data
+            var statusId = parseInt($('#appointmentStatusId').val()) || 0;
+            var statusName = $('#statusName').val().trim();
+            var description = $('#description').val().trim();
+            var isActive = $('#isActive').is(':checked');
+            var createdDate = $('#createdDate').val();
+            
+            // Clear previous validation
+            $('.form-control').removeClass('is-invalid');
+            $('.invalid-feedback').text('');
+            
+            // Validate required fields
+            var isValid = true;
+            if (!statusName) {
+                $('#statusName').addClass('is-invalid');
+                $('#statusNameError').text('Status name is required');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // Prepare data object
+            var statusData = {
+                appointmentStatusesTienDmid: statusId,
+                statusName: statusName,
+                description: description,
+                isActive: isActive
+            };
+            
+            // Set created date for new items or use existing date for updates
+            if (statusId === 0) {
+                statusData.createdDate = new Date().toISOString();
+            } else if (createdDate) {
+                statusData.createdDate = new Date(createdDate).toISOString();
+            }
+            
+            // Determine endpoint and method
+            var url = statusId === 0 ? '/AppointmentStatusesTienDms/CreateStatus' : '/AppointmentStatusesTienDms/UpdateStatus';
+            var method = 'POST';
+            
+            // Make Ajax call
+            $.ajax({
+                url: url,
+                type: method,
+                contentType: 'application/json',
+                data: JSON.stringify(statusData),
+                success: function(response) {
+                    if (response.success) {
+                        alert('✅ ' + response.message);
+                        $('#appointmentStatusModal').modal('hide');
+                        loadData(); // Reload the table
+                    } else {
+                        alert('❌ Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Save error:', xhr.responseText);
+                    alert('❌ Failed to save status: ' + (xhr.responseText || error));
+                }
+            });
+        });
+
+        function deleteItem(id) {
+            if (!id) return;
+            
+            // Get status name from the table row
+            var statusName = '';
+            $('.tblBody tr').each(function() {
+                var $row = $(this);
+                var deleteButton = $row.find('button[onclick*="deleteItem(' + id + ')"]');
+                if (deleteButton.length > 0) {
+                    statusName = $row.find('td:first').text().trim();
+                    return false; // break the loop
+                }
+            });
+            
+            // Show confirmation modal with the popup
+            showConfirmDeleteModal(id, statusName);
+        }
+
+        function viewDetail(id) {
+            if (!id) return;
+            
+            // Show detail modal using the popup
+            showViewDetailModal(id);
+        }
+
+        // ===== POPUP FUNCTIONS =====
+        
+        // Confirm Delete Modal functionality
+        let deleteItemId = 0;
+        let currentDetailItem = null;
+
+        function showConfirmDeleteModal(id, statusName) {
+            deleteItemId = id;
+            $('#deleteStatusName').text(statusName || 'Unknown Status');
+            $('#confirmDeleteModal').modal('show');
+        }
+
+        // Function to perform actual delete
+        function performDelete(id) {
+            console.log("Deleting appointment status ID:", id);
+            
+            $.ajax({
+                url: '/AppointmentStatusesTienDms/DeleteStatus/' + id,
+                type: 'POST',
+                contentType: 'application/json',
+                success: function(response) {
+                    if (response.success) {
+                        // Show success message
+                        alert('✅ ' + response.message);
+                        // Reload the data table
+                        if (typeof loadData === 'function') {
+                            loadData();
+                        }
+                    } else {
+                        alert('❌ Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Delete error:', xhr.responseText);
+                    alert('❌ Failed to delete: ' + (xhr.responseText || error));
+                }
+            });
+        }
+
+        // View Detail Modal functionality
+        function showViewDetailModal(id) {
+            console.log("Loading details for appointment status ID:", id);
+            
+            // Show loading state
+            $('#detailId').text('Loading...');
+            $('#detailStatusName').text('Loading...');
+            $('#detailDescription').text('Loading...');
+            $('#detailCreatedDate').text('Loading...');
+            $('#detailIsActive').text('Loading...');
+            
+            $('#viewDetailModal').modal('show');
+            
+            // Load data from API
+            $.ajax({
+                url: 'http://localhost:8080/api/AppointmentStatusesTienDM/' + id,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result) {
+                        currentDetailItem = result;
+                        
+                        // Populate modal with data
+                        $('#detailId').text(result.appointmentStatusesTienDmid || 'N/A');
+                        $('#detailStatusName').html('<strong>' + (result.statusName || 'N/A') + '</strong>');
+                        $('#detailDescription').text(result.description || 'No description provided');
+                        
+                        // Format created date
+                        if (result.createdDate) {
+                            const date = new Date(result.createdDate);
+                            $('#detailCreatedDate').text(date.toLocaleString());
+                        } else {
+                            $('#detailCreatedDate').text('N/A');
+                        }
+                        
+                        // Format active status
+                        if (result.isActive) {
+                            $('#detailIsActive').html('<span class="badge bg-success">✅ Active</span>');
+                        } else {
+                            $('#detailIsActive').html('<span class="badge bg-secondary">❌ Inactive</span>');
+                        }
+                    } else {
+                        showDetailError('No data found');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching status details:", xhr.responseText);
+                    showDetailError('Failed to load details: ' + (xhr.responseText || error));
+                }
+            });
+        }
+
+        function showDetailError(message) {
+            $('#detailId').text('Error');
+            $('#detailStatusName').text(message);
+            $('#detailDescription').text('-');
+            $('#detailCreatedDate').text('-');
+            $('#detailIsActive').text('-');
+        }
+
+        // ===== EVENT HANDLERS =====
+        
+        // Handle confirmed delete
+        $('#confirmDeleteBtn').click(function() {
+            if (deleteItemId > 0) {
+                performDelete(deleteItemId);
+                $('#confirmDeleteModal').modal('hide');
+                deleteItemId = 0;
+            }
+        });
+
+        // Handle edit from detail modal
+        $('#editFromDetailBtn').click(function() {
+            if (currentDetailItem) {
+                $('#viewDetailModal').modal('hide');
+                editItem(currentDetailItem.appointmentStatusesTienDmid);
+            }
+        });
+    </script>
+}
