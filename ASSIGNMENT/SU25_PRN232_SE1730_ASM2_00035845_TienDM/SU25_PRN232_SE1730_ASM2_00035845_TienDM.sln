@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.Repository.TienDM", "DNATestingSystem.Repository.TienDM\DNATestingSystem.Repository.TienDM.csproj", "{9AB19E86-C10A-4D00-823C-419A0B24E0F2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DNATestingSystem.Services.TienDM", "DNATestingSystem.Services.TienDM\DNATestingSystem.Services.TienDM.csproj", "{8835109D-26B7-43A4-8FC3-9BF1FAD8EC53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNATestingSystem.GraphQLAPIServices.TienDM", "DNATestingSystem.GraphQLAPIServices.TienDM\DNATestingSystem.GraphQLAPIServices.TienDM.csproj", "{DC0D8A91-B561-4DD2-88E5-718A6DC60A18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AB19E86-C10A-4D00-823C-419A0B24E0F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB19E86-C10A-4D00-823C-419A0B24E0F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB19E86-C10A-4D00-823C-419A0B24E0F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB19E86-C10A-4D00-823C-419A0B24E0F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8835109D-26B7-43A4-8FC3-9BF1FAD8EC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8835109D-26B7-43A4-8FC3-9BF1FAD8EC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8835109D-26B7-43A4-8FC3-9BF1FAD8EC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8835109D-26B7-43A4-8FC3-9BF1FAD8EC53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC0D8A91-B561-4DD2-88E5-718A6DC60A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC0D8A91-B561-4DD2-88E5-718A6DC60A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC0D8A91-B561-4DD2-88E5-718A6DC60A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC0D8A91-B561-4DD2-88E5-718A6DC60A18}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B80DF312-5957-488A-96EF-2A7B97F09F60}
+	EndGlobalSection
+EndGlobal

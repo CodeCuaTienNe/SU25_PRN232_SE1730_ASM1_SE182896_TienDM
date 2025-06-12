@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DNATestingSystem.GraphQLAPIServices.TienDM.props" />
+</Project>

@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "args": ["run", "--project", "DNATestingSystem.MVCWebApp.FE.TienDM"],
+      "command": "dotnet",
+      "group": "build",
+      "isBackground": true,
+      "label": "Run Frontend MVC",
+      "problemMatcher": ["$msCompile"],
+      "type": "shell"
+    }
+  ]
+}
