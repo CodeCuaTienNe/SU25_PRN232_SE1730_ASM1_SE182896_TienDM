@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DNATestingSystem.GraphQLAPIServices.TienDM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f96895cb6ce215bcb57cad3247ce7e1fd564199")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a25938d290430b8232c6a09513fa13dc50ea6ebf")]
 [assembly: System.Reflection.AssemblyProductAttribute("DNATestingSystem.GraphQLAPIServices.TienDM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DNATestingSystem.GraphQLAPIServices.TienDM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

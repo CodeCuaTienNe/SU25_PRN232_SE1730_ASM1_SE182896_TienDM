@@ -29,6 +29,7 @@ builder.Services.AddScoped<ServicesNhanVtService>();
 // Add GraphQL Server with Query and Mutation types
 builder.Services.AddGraphQLServer()
     .AddQueryType<DNATestingSystem.GraphQLAPIServices.TienDM.GraphQLs.Query>()
+    .AddMutationType<DNATestingSystem.GraphQLAPIServices.TienDM.GraphQLs.Mutations>()
     .BindRuntimeType<DateTime, DateTimeType>();
 
 //builder.Services.AddGraphQLServer().BindRuntimeType<DateTime, DateTimeType>();
