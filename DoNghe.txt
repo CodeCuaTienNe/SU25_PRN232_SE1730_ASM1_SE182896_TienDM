@@ -1280,3 +1280,30 @@ Remember to:
 Happy coding! 🚀
 ================================================================================
 */
+
+GraphQL
+
+query {
+  allAppointments {
+    appointmentsTienDmid
+    contactPhone
+    totalAmount
+    appointmentDate
+    createdDate
+    appointmentStatusesTienDm {
+      appointmentStatusesTienDmid
+      statusName
+      isActive
+    }
+    servicesNhanVt {
+      servicesNhanVtid
+      serviceName
+      price
+    }
+    userAccount {
+      userAccountId
+      userName
+      email
+    }
+  }
+}
