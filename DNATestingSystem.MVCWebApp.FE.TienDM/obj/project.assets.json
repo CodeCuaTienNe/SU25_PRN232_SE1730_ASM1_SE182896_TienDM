@@ -7809,11 +7809,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PRN232_TienHover_Assignement\\DNATestingSystem.MVCWebApp.FE.TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM.csproj",
+      "projectUniqueName": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM.csproj",
       "projectName": "DNATestingSystem.MVCWebApp.FE.TienDM",
-      "projectPath": "D:\\PRN232_TienHover_Assignement\\DNATestingSystem.MVCWebApp.FE.TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM.csproj",
+      "projectPath": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM.csproj",
       "packagesPath": "C:\\Users\\2004d\\.nuget\\packages\\",
-      "outputPath": "D:\\PRN232_TienHover_Assignement\\DNATestingSystem.MVCWebApp.FE.TienDM\\obj\\",
+      "outputPath": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.MVCWebApp.FE.TienDM\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7835,8 +7835,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\PRN232_TienHover_Assignement\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj": {
-              "projectPath": "D:\\PRN232_TienHover_Assignement\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj"
+            "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj": {
+              "projectPath": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj"
             }
           }
         }

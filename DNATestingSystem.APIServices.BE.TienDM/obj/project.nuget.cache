@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cp8aLq/7P+ap670TsQ/5JCeuNLnEQsBZJIF++ASll9lTeJJ7kMDtRGeIz37TUSRxis3+GVN00CfbOElZ2n184A==",
+  "dgSpecHash": "/oOPJUznMe8zrLbPvqPcl5RxmEYxZMOQymG56Rm2vUFyUDAvcuXveNnNmsmaJWL9wbCfMVb58PmLaqjlobfQtg==",
   "success": true,
-  "projectFilePath": "D:\\PRN232_TienHover_Assignement\\DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj",
+  "projectFilePath": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2004d\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\2004d\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
