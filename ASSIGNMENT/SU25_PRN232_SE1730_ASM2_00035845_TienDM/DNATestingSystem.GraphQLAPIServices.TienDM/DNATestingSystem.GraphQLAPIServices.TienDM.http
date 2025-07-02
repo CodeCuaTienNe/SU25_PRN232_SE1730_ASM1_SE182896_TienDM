@@ -1,6 +1,0 @@
-@DNATestingSystem.GraphQLAPIServices.TienDM_HostAddress = http://localhost:5034
-
-GET {{DNATestingSystem.GraphQLAPIServices.TienDM_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

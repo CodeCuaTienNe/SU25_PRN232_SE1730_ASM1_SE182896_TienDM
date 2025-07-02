@@ -2,13 +2,52 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "args": ["run", "--project", "DNATestingSystem.MVCWebApp.FE.TienDM"],
+      "label": "build-backend",
       "command": "dotnet",
-      "group": "build",
-      "isBackground": true,
-      "label": "Run Frontend MVC",
-      "problemMatcher": ["$msCompile"],
-      "type": "shell"
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/DNATestingSystem.APIServices.BE.TienDM/DNATestingSystem.APIServices.BE.TienDM.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build-frontend",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/DNATestingSystem.MVCWebApp.FE.TienDM/DNATestingSystem.MVCWebApp.FE.TienDM.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch-backend",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/DNATestingSystem.APIServices.BE.TienDM"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "watch-frontend",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/DNATestingSystem.MVCWebApp.FE.TienDM"
+      ],
+      "problemMatcher": "$msCompile"
     }
   ]
 }

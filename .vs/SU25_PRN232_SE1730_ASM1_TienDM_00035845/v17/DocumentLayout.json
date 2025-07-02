@@ -1,0 +1,254 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.services.tiendm\\iappointmentstatusestiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|solutionrelative:dnatestingsystem.services.tiendm\\iappointmentstatusestiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.services.tiendm\\appointmentstatusestiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|solutionrelative:dnatestingsystem.services.tiendm\\appointmentstatusestiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.apiservices.be.tiendm\\controllers\\appointmentstatusestiendmcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|solutionrelative:dnatestingsystem.apiservices.be.tiendm\\controllers\\appointmentstatusestiendmcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.apiservices.be.tiendm\\controllers\\appointmentstiendmcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36C8D50D-1F7B-4C8E-9A1F-CA09E617BFB3}|DNATestingSystem.APIServices.BE.TienDM\\DNATestingSystem.APIServices.BE.TienDM.csproj|solutionrelative:dnatestingsystem.apiservices.be.tiendm\\controllers\\appointmentstiendmcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.services.tiendm\\dnatestingsystem.services.tiendm.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|solutionrelative:dnatestingsystem.services.tiendm\\dnatestingsystem.services.tiendm.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.services.tiendm\\iappointmentstiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|solutionrelative:dnatestingsystem.services.tiendm\\iappointmentstiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.services.tiendm\\appointmentstiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEC3ABEA-45F8-42E6-A8E1-4BD412347CEC}|DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj|solutionrelative:dnatestingsystem.services.tiendm\\appointmentstiendmservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\modelextensions\\searchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\modelextensions\\searchrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\dbcontext\\se18_prn232_se1730_g3_dnatestingsystemcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\dbcontext\\se18_prn232_se1730_g3_dnatestingsystemcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\appointmentstatusestiendmrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\appointmentstatusestiendmrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\appointmentstiendmrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\appointmentstiendmrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\models\\appointmentstatusestiendm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\models\\appointmentstatusestiendm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|d:\\prn232_tienhover_assignement\\assignment\\su25_prn232_se1730_asm1_tiendm_00035845\\dnatestingsystem.repository.tiendm\\models\\appointmentstiendm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77D31821-DCFA-4082-BE1E-DE80BF5828CB}|DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj|solutionrelative:dnatestingsystem.repository.tiendm\\models\\appointmentstiendm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IAppointmentStatusesTienDmService.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\IAppointmentStatusesTienDmService.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Services.TienDM\\IAppointmentStatusesTienDmService.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\IAppointmentStatusesTienDmService.cs",
+              "RelativeToolTip": "DNATestingSystem.Services.TienDM\\IAppointmentStatusesTienDmService.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T08:19:36.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppointmentStatusesTienDmService.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\AppointmentStatusesTienDmService.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Services.TienDM\\AppointmentStatusesTienDmService.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\AppointmentStatusesTienDmService.cs",
+              "RelativeToolTip": "DNATestingSystem.Services.TienDM\\AppointmentStatusesTienDmService.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAwwAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T08:18:10.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppointmentStatusesTienDMController.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentStatusesTienDMController.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentStatusesTienDMController.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentStatusesTienDMController.cs",
+              "RelativeToolTip": "DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentStatusesTienDMController.cs",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAgwFEAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T08:15:46.685Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppointmentsTienDMController.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentsTienDMController.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentsTienDMController.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentsTienDMController.cs",
+              "RelativeToolTip": "DNATestingSystem.APIServices.BE.TienDM\\Controllers\\AppointmentsTienDMController.cs",
+              "ViewState": "AQIAAKAAAAAAAAAAAAAiwLsAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T08:13:00.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DNATestingSystem.Services.TienDM",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj",
+              "RelativeDocumentMoniker": "DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj",
+              "RelativeToolTip": "DNATestingSystem.Services.TienDM\\DNATestingSystem.Services.TienDM.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-24T08:09:42.486Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IAppointmentsTienDmService.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\IAppointmentsTienDmService.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Services.TienDM\\IAppointmentsTienDmService.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\IAppointmentsTienDmService.cs",
+              "RelativeToolTip": "DNATestingSystem.Services.TienDM\\IAppointmentsTienDmService.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T06:56:49.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppointmentsTienDmService.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\AppointmentsTienDmService.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Services.TienDM\\AppointmentsTienDmService.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Services.TienDM\\AppointmentsTienDmService.cs",
+              "RelativeToolTip": "DNATestingSystem.Services.TienDM\\AppointmentsTienDmService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T06:55:47.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SearchRequest.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\ModelExtensions\\SearchRequest.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\ModelExtensions\\SearchRequest.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\ModelExtensions\\SearchRequest.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\ModelExtensions\\SearchRequest.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBEAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T06:49:03.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\DBContext\\SE18_PRN232_SE1730_G3_DNATestingSystemContext.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAuwDUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T06:46:07.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppointmentStatusesTienDmRepository.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\AppointmentStatusesTienDmRepository.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\AppointmentStatusesTienDmRepository.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\AppointmentStatusesTienDmRepository.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\AppointmentStatusesTienDmRepository.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T03:49:55.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AppointmentsTienDmRepository.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\AppointmentsTienDmRepository.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\AppointmentsTienDmRepository.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\AppointmentsTienDmRepository.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\AppointmentsTienDmRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAcwBUAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T03:48:56.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AppointmentStatusesTienDm.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\Models\\AppointmentStatusesTienDm.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\Models\\AppointmentStatusesTienDm.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\Models\\AppointmentStatusesTienDm.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\Models\\AppointmentStatusesTienDm.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T03:39:14.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AppointmentsTienDm.cs",
+              "DocumentMoniker": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
+              "RelativeDocumentMoniker": "DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
+              "ToolTip": "D:\\PRN232_TienHover_Assignement\\ASSIGNMENT\\SU25_PRN232_SE1730_ASM1_TienDM_00035845\\DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
+              "RelativeToolTip": "DNATestingSystem.Repository.TienDM\\Models\\AppointmentsTienDm.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T03:35:07.976Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
