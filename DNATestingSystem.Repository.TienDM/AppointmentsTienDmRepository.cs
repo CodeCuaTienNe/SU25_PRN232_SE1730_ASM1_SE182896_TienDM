@@ -23,23 +23,37 @@ namespace DNATestingSystem.Repository.TienDM
         /// </summary>
         public new async Task<List<AppointmentsTienDm>> GetAllAsync()
         {
-            var appointments = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
-                .ToListAsync();
-            return appointments ?? new List<AppointmentsTienDm>();
+            try
+            {
+                // Try without includes first to isolate the issue
+                var appointments = await _context.AppointmentsTienDms
+                    .ToListAsync();
+
+                return appointments ?? new List<AppointmentsTienDm>();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or rethrow with more details
+                throw new Exception($"Error in GetAllAsync: {ex.Message}", ex);
+            }
         }        /// <summary>
                  /// Override GetByIdAsync to include related entities
                  /// </summary>
         public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
-            var appointment = await _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
-                .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
-            return appointment ?? new AppointmentsTienDm();
+            try
+            {
+                // Try without includes first to isolate the issue
+                var appointment = await _context.AppointmentsTienDms
+                    .FirstOrDefaultAsync(a => a.AppointmentsTienDmid == id);
+
+                return appointment ?? new AppointmentsTienDm();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or rethrow with more details
+                throw new Exception($"Error in GetByIdAsync: {ex.Message}", ex);
+            }
         }
 
         /// <summary>
@@ -80,9 +94,6 @@ namespace DNATestingSystem.Repository.TienDM
         private IQueryable<AppointmentsTienDm> BuildSearchQuery(int id, string? contactPhone, decimal totalAmount)
         {
             return _context.AppointmentsTienDms
-                .Include(a => a.AppointmentStatusesTienDm)
-                .Include(a => a.ServicesNhanVt)
-                .Include(a => a.UserAccount)
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
                     && (id == 0 || a.AppointmentsTienDmid == id));
