@@ -172,10 +172,17 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
             Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
             Console.WriteLine($"AppointmentDate: {appointmentsTienDm.AppointmentDate}");
             Console.WriteLine($"AppointmentTime: {appointmentsTienDm.AppointmentTime}");
+            Console.WriteLine($"SamplingMethod: {appointmentsTienDm.SamplingMethod}");
             Console.WriteLine($"ContactPhone: {appointmentsTienDm.ContactPhone}");
             Console.WriteLine($"TotalAmount: {appointmentsTienDm.TotalAmount}");
             Console.WriteLine($"ServicesNhanVtid: {appointmentsTienDm.ServicesNhanVtid}");
             Console.WriteLine($"AppointmentStatusesTienDmid: {appointmentsTienDm.AppointmentStatusesTienDmid}");
+
+            // Remove validation errors for navigation properties
+            ModelState.Remove("UserAccount");
+            ModelState.Remove("ServicesNhanVt");
+            ModelState.Remove("AppointmentStatusesTienDm");
+            ModelState.Remove("SampleThinhLcs");
 
             if (!ModelState.IsValid)
             {
@@ -270,6 +277,11 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
             using (var httpClient = new HttpClient())
             {
                 var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                if (string.IsNullOrEmpty(tokenString))
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+
                 httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
 
                 using (var response = await httpClient.GetAsync(APIEndPoint + $"AppointmentsTienDM/{id}"))
@@ -277,15 +289,58 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
-                        var appointment = JsonConvert.DeserializeObject<AppointmentsTienDm>(content);
+
+                        // First deserialize to ApiAppointmentDTO to ensure property names match the API
+                        var apiAppointment = JsonConvert.DeserializeObject<ApiAppointmentDTO>(content);
+
+                        if (apiAppointment == null)
+                        {
+                            return NotFound();
+                        }
+
+                        // Then map to the AppointmentsTienDm model
+                        var appointment = new AppointmentsTienDm
+                        {
+                            AppointmentsTienDmid = apiAppointment.appointmentsTienDmid,
+                            UserAccountId = apiAppointment.userAccountId,
+                            ServicesNhanVtid = apiAppointment.servicesNhanVtid,
+                            AppointmentStatusesTienDmid = apiAppointment.appointmentStatusesTienDmid,
+                            AppointmentDate = DateOnly.Parse(apiAppointment.appointmentDate),
+                            AppointmentTime = TimeOnly.Parse(apiAppointment.appointmentTime),
+                            SamplingMethod = apiAppointment.samplingMethod, // This ensures the sampling method is correctly set
+                            Address = apiAppointment.address,
+                            ContactPhone = apiAppointment.contactPhone,
+                            Notes = apiAppointment.notes,
+                            CreatedDate = apiAppointment.createdDate,
+                            ModifiedDate = apiAppointment.modifiedDate,
+                            TotalAmount = apiAppointment.totalAmount,
+                            IsPaid = apiAppointment.isPaid,
+                            // Set navigation properties for display
+                            UserAccount = new SystemUserAccount { UserName = apiAppointment.username },
+                            ServicesNhanVt = new ServicesNhanVt { ServiceName = apiAppointment.serviceName },
+                            AppointmentStatusesTienDm = new AppointmentStatusesTienDm { StatusName = apiAppointment.statusName }
+                        };
+
+                        // Log the sampling method for debugging
+                        Console.WriteLine($"Loaded appointment with SamplingMethod: {appointment.SamplingMethod}");
+
+                        // Debug the sampling method binding
+                        DebugSelectBinding("SamplingMethod", appointment.SamplingMethod);
 
                         await LoadDropdownsAsync();
+
+                        // Pass the current sampling method to ViewBag for the view
+                        ViewBag.CurrentSamplingMethod = appointment.SamplingMethod;
                         return View(appointment);
+                    }
+                    else
+                    {
+                        // Log the error
+                        Console.WriteLine($"API Error: {response.StatusCode}, {response.ReasonPhrase}");
+                        return NotFound($"API Error: {response.StatusCode}");
                     }
                 }
             }
-
-            return NotFound();
         }        // POST: AppointmentsTienDms/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -296,17 +351,54 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                 return NotFound();
             }
 
+            // Log the sampling method for debugging
+            Console.WriteLine($"Form submitted with SamplingMethod: {appointmentsTienDm.SamplingMethod}");
+
+            // Remove validation errors for navigation properties
+            ModelState.Remove("UserAccount");
+            ModelState.Remove("ServicesNhanVt");
+            ModelState.Remove("AppointmentStatusesTienDm");
+            ModelState.Remove("SampleThinhLcs");
+
+            // Debug ModelState errors if any
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("=== EDIT MODEL STATE ERRORS ===");
+                foreach (var error in ModelState)
+                {
+                    Console.WriteLine($"Key: {error.Key}, Errors: {string.Join(", ", error.Value.Errors.Select(e => e.ErrorMessage))}");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 // API Call Implementation
                 using (var httpClient = new HttpClient())
                 {
                     var tokenString = HttpContext.Request.Cookies.FirstOrDefault(c => c.Key == "TokenString").Value;
+                    if (string.IsNullOrEmpty(tokenString))
+                    {
+                        ModelState.AddModelError("", "Authentication token not found. Please login again.");
+                        await LoadDropdownsAsync();
+                        return View(appointmentsTienDm);
+                    }
+
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
 
                     appointmentsTienDm.ModifiedDate = DateTime.Now;
 
-                    var json = JsonConvert.SerializeObject(appointmentsTienDm);
+                    // Enhanced JSON serialization with custom converters for DateOnly and TimeOnly
+                    var json = JsonConvert.SerializeObject(appointmentsTienDm, new JsonSerializerSettings
+                    {
+                        DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                        Converters = new List<JsonConverter>
+                        {
+                            new Converters.DateOnlyConverter(),
+                            new Converters.TimeOnlyConverter()
+                        }
+                    });
+
+                    Console.WriteLine($"Serialized appointment for update: {json}");
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                     using (var response = await httpClient.PutAsync(APIEndPoint + $"AppointmentsTienDM/{id}", content))
@@ -487,9 +579,60 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                 {
                     ViewData["UserAccountId"] = new SelectList(new List<SystemUserAccount>(), "SystemUserAccountId", "Email");
                 }
-                //AJAX
-            }
 
+                // Create a list of sampling methods for dropdown
+                var samplingMethods = new List<string>
+                {
+                    "Buccal Swab",
+                    "Blood Sample",
+                    "Saliva Collection",
+                    "Hair Follicle",
+                    "Nail Clipping",
+                    "Tissue Sample",
+                    "Amniotic Fluid",
+                    "Chorionic Villus",
+                    "Home Visit"
+                };
+
+                // Add this data to ViewBag for debugging
+                ViewBag.SamplingMethods = samplingMethods;
+            }
+        }
+
+        // Helper method to debug select list binding
+        private void DebugSelectBinding(string propertyName, string propertyValue)
+        {
+            Console.WriteLine($"Debugging select binding for {propertyName}: Value = '{propertyValue}'");
+
+            if (propertyName == "SamplingMethod")
+            {
+                var samplingMethods = new List<string>
+                {
+                    "Buccal Swab",
+                    "Blood Sample",
+                    "Saliva Collection",
+                    "Hair Follicle",
+                    "Nail Clipping",
+                    "Tissue Sample",
+                    "Amniotic Fluid",
+                    "Chorionic Villus",
+                    "Home Visit"
+                };
+
+                if (string.IsNullOrEmpty(propertyValue))
+                {
+                    Console.WriteLine("SamplingMethod is null or empty");
+                }
+                else if (samplingMethods.Contains(propertyValue))
+                {
+                    Console.WriteLine($"SamplingMethod '{propertyValue}' is in the list of valid options");
+                }
+                else
+                {
+                    Console.WriteLine($"SamplingMethod '{propertyValue}' is NOT in the list of valid options");
+                    Console.WriteLine($"Valid options: {string.Join(", ", samplingMethods)}");
+                }
+            }
         }
     }
 }

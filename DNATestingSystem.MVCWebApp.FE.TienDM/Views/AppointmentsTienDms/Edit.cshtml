@@ -58,7 +58,8 @@
                     </div>                    <div class="row">                        <div class="col-md-6">
                             <div class="form-group mb-3">
                                 <label asp-for="SamplingMethod" class="form-label">Sampling Method</label>
-                                <select asp-for="SamplingMethod" class="form-select">
+                                @* Use JavaScript to ensure the correct option is selected *@
+                                <select asp-for="SamplingMethod" class="form-select" id="samplingMethodSelect">
                                     <option value="">-- Select Sampling Method --</option>
                                     <option value="Buccal Swab">Buccal Swab (Cheek Swab)</option>
                                     <option value="Blood Sample">Blood Sample</option>
@@ -68,9 +69,44 @@
                                     <option value="Tissue Sample">Tissue Sample</option>
                                     <option value="Amniotic Fluid">Amniotic Fluid (Prenatal)</option>
                                     <option value="Chorionic Villus">Chorionic Villus Sampling (CVS)</option>
+                                    <option value="Home Visit">Home Visit</option>
                                 </select>
                                 <span asp-validation-for="SamplingMethod" class="text-danger"></span>
+                                
+                                @* Debug display - we can hide this later *@
+                                <div class="text-muted small mt-1">Current value: @Model.SamplingMethod</div>
                             </div>
+                            
+                            @* Add JavaScript to ensure the correct option is selected *@
+                            <script>
+                                // Execute after DOM is fully loaded
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const samplingMethodSelect = document.getElementById('samplingMethodSelect');
+                                    const currentValue = '@Model.SamplingMethod';
+                                    
+                                    console.log('Current sampling method:', currentValue);
+                                    
+                                    let foundMatch = false;
+                                    
+                                    // Find and select the matching option
+                                    for (let i = 0; i < samplingMethodSelect.options.length; i++) {
+                                        if (samplingMethodSelect.options[i].value === currentValue) {
+                                            samplingMethodSelect.options[i].selected = true;
+                                            console.log('Selected option:', samplingMethodSelect.options[i].value);
+                                            foundMatch = true;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    // If no match found, add a new option with the current value
+                                    if (!foundMatch && currentValue) {
+                                        console.log('Adding new option for:', currentValue);
+                                        const newOption = new Option(currentValue, currentValue);
+                                        newOption.selected = true;
+                                        samplingMethodSelect.add(newOption);
+                                    }
+                                });
+                            </script>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
