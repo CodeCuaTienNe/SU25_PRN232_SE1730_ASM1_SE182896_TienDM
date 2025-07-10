@@ -5,6 +5,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.OData;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
+using DNATestingSystem.Repository.TienDM.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +34,20 @@ builder.Services.AddScoped<IAppointmentsTienDmService, AppointmentsTienDmService
 builder.Services.AddScoped<IAppointmentStatusesTienDmService, AppointmentStatusesTienDmService>();
 builder.Services.AddScoped<ISystemUserAccountService, SystemUserAccountService>();
 builder.Services.AddScoped<IServicesNhanVtService, ServicesNhanVtService>();
+
+//OData
+static IEdmModel GetEdmModel()
+{
+    var odataBuilder = new ODataConventionModelBuilder();
+    odataBuilder.EntitySet<AppointmentsTienDm>("AppointmentsTienDm"); // EDM - ENTITY DATA MODEL
+    odataBuilder.EntitySet<AppointmentsTienDm>("AppointmentsTienDm");
+    return odataBuilder.GetEdmModel();
+}
+builder.Services.AddControllers().AddOData(options =>
+{
+    options.Select().Filter().OrderBy().Expand().SetMaxTop(null).Count();
+    options.AddRouteComponents("odata", GetEdmModel());
+});
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>

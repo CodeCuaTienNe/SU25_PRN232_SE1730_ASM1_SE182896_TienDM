@@ -17,15 +17,10 @@ namespace DNATestingSystem.Repository.TienDM
         public AppointmentsTienDmRepository() : base() { }
 
         public AppointmentsTienDmRepository(SE18_PRN232_SE1730_G3_DNATestingSystemContext context) : base(context) { }
-
-        /// <summary>
-        /// Override GetAllAsync to include related entities
-        /// </summary>
         public new async Task<List<AppointmentsTienDm>> GetAllAsync()
         {
             try
             {
-                // Try without includes first to isolate the issue
                 var appointments = await _context.AppointmentsTienDms
                     .ToListAsync();
 
@@ -36,9 +31,8 @@ namespace DNATestingSystem.Repository.TienDM
                 // Log the exception or rethrow with more details
                 throw new Exception($"Error in GetAllAsync: {ex.Message}", ex);
             }
-        }        /// <summary>
-                 /// Override GetByIdAsync to include related entities
-                 /// </summary>
+        }  
+
         public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
             try
@@ -56,27 +50,21 @@ namespace DNATestingSystem.Repository.TienDM
             }
         }
 
-        /// <summary>
-        /// Get all appointments with pagination - optimized for large datasets
-        /// </summary>
+
         public async Task<PaginationResult<List<AppointmentsTienDm>>> GetAllPaginatedAsync(int page, int pageSize)
         {
             // Use empty search criteria to get all items with pagination
             return await SearchAsync(0, string.Empty, 0, page, pageSize);
         }
 
-        /// <summary>
-        /// Search appointments with individual parameters
-        /// </summary>
+
         public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
             var query = BuildSearchQuery(id, contactPhone, totalAmount);
             return await ExecutePaginatedQuery(query, page, pageSize);
         }
 
-        /// <summary>
-        /// Search appointments using SearchRequest model
-        /// </summary>
+
         public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(SearchAppointmentsTienDm searchRequest)
         {
             // Set default values if null
@@ -88,9 +76,8 @@ namespace DNATestingSystem.Repository.TienDM
 
             var query = BuildSearchQuery(id, contactPhone, totalAmount);
             return await ExecutePaginatedQuery(query, page, pageSize);
-        }        /// <summary>
-                 /// Builds the base search query with includes and filters
-                 /// </summary>
+        }        
+
         private IQueryable<AppointmentsTienDm> BuildSearchQuery(int id, string? contactPhone, decimal totalAmount)
         {
             return _context.AppointmentsTienDms
@@ -99,9 +86,6 @@ namespace DNATestingSystem.Repository.TienDM
                     && (id == 0 || a.AppointmentsTienDmid == id));
         }
 
-        /// <summary>
-        /// Executes paginated query and returns PaginationResult
-        /// </summary>
         private async Task<PaginationResult<List<AppointmentsTienDm>>> ExecutePaginatedQuery(IQueryable<AppointmentsTienDm> query, int page, int pageSize)
         {
             // Get total count for pagination
@@ -124,9 +108,8 @@ namespace DNATestingSystem.Repository.TienDM
                 PageSize = pageSize,
                 Items = appointments ?? new List<AppointmentsTienDm>()
             };
-        }/// <summary>
-         /// Override CreateAsync to set CreatedDate automatically
-         /// </summary>
+        }
+
         public new async Task<int> CreateAsync(AppointmentsTienDm entity)
         {
             if (entity.CreatedDate == null)
@@ -135,18 +118,13 @@ namespace DNATestingSystem.Repository.TienDM
             return await base.CreateAsync(entity);
         }
 
-        /// <summary>
-        /// Override UpdateAsync to set ModifiedDate automatically
-        /// </summary>
+
         public new async Task<int> UpdateAsync(AppointmentsTienDm entity)
         {
             entity.ModifiedDate = DateTime.Now;
             return await base.UpdateAsync(entity);
         }
 
-        /// <summary>
-        /// Delete appointment by ID - leverages base class RemoveAsync
-        /// </summary>
         public async Task<bool> DeleteAsync(int id)
         {
             var appointment = await _context.AppointmentsTienDms.FindAsync(id);

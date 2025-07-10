@@ -9,6 +9,7 @@ namespace DNATestingSystem.Repository.TienDM.Models;
 
 public partial class AppointmentsTienDm
 {
+    [Key]
     public int AppointmentsTienDmid { get; set; }
 
     [Required(ErrorMessage = "User Account is required")]

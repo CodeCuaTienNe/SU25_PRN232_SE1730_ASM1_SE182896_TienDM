@@ -40,6 +40,9 @@ dotnet add package Microsoft.Extensions.Configuration.Json --version 8.0.0
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --version 8.0.10
 dotnet add package System.IdentityModel.Tokens.Jwt --version 8.3.0
 
+//OData
+dotnet add package Microsoft.AspNetCore.OData --version 8.2.5
+
 // ============================================================================
 // 2. DATABASE CONFIGURATION
 // ============================================================================
@@ -70,6 +73,9 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
   }
 }
 */
+
+2.4 Dotnet EF Scaffold:
+dotnet ef dbcontext scaffold "Server=(local);Uid=sa;Pwd=12345;Database=Summer2025HandbagDB;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer --output-dir ./
 
 // ============================================================================
 // 3. GENERIC REPOSITORY PATTERN

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\DNATestingSystem.MVCWebApp.FE.TienDM.props" />
-</Project>
