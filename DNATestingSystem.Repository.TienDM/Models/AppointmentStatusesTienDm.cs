@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace DNATestingSystem.Repository.TienDM.Models;
 
@@ -14,7 +13,7 @@ public partial class AppointmentStatusesTienDm
 
     public DateTime? CreatedDate { get; set; }
 
-    public bool? IsActive { get; set; }    // Keep JsonIgnore to avoid circular reference when serializing appointments collection
-    [JsonIgnore]
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<AppointmentsTienDm> AppointmentsTienDms { get; set; } = new List<AppointmentsTienDm>();
 }

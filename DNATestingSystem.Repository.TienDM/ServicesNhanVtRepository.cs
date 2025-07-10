@@ -19,7 +19,7 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var services = await _context.ServicesNhanVts
                 .Include(s => s.ServiceCategoryNhanVt)
-                .Include(s => s.UserAccount)
+                // Removed .Include(s => s.UserAccount) as it doesn't exist in the model
                 .Where(s => s.IsActive == true)
                 .ToListAsync();
             return services ?? new List<ServicesNhanVt>();
@@ -29,7 +29,7 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var service = await _context.ServicesNhanVts
                 .Include(s => s.ServiceCategoryNhanVt)
-                .Include(s => s.UserAccount)
+                // Removed .Include(s => s.UserAccount) as it doesn't exist in the model
                 .Include(s => s.AppointmentsTienDms)
                 .FirstOrDefaultAsync(s => s.ServicesNhanVtid == id);
             return service ?? new ServicesNhanVt();
@@ -39,7 +39,7 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var services = await _context.ServicesNhanVts
                 .Include(s => s.ServiceCategoryNhanVt)
-                .Include(s => s.UserAccount)
+                // Removed .Include(s => s.UserAccount) as it doesn't exist in the model
                 .Where(s => s.IsActive == true)
                 .ToListAsync();
             return services ?? new List<ServicesNhanVt>();
@@ -49,7 +49,7 @@ namespace DNATestingSystem.Repository.TienDM
         {
             var services = await _context.ServicesNhanVts
                 .Include(s => s.ServiceCategoryNhanVt)
-                .Include(s => s.UserAccount)
+                // Removed .Include(s => s.UserAccount) as it doesn't exist in the model
                 .Where(s => (s.ServiceName.Contains(serviceName) || string.IsNullOrEmpty(serviceName))
                     && (s.ServicesNhanVtid == id || id == 0))
                 .ToListAsync();

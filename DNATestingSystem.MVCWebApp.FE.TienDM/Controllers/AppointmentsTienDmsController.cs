@@ -8,28 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using DNATestingSystem.Repository.TienDM.DBContext;
 using DNATestingSystem.Repository.TienDM.Models;
 using DNATestingSystem.MVCWebApp.FE.TienDM.Models;
+using DNATestingSystem.Repository.TienDM.ModelExtensions;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
 using Microsoft.Identity.Client;
 
 namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
-{    /// <summary>
-     /// AppointmentsTienDms Controller - API Integration Status:
-     /// ✓ ACTIVE API CALLS: All CRUD operations (GetAll, GetById, Create, Update, Delete, Search)
-     /// ✓ DROPDOWN DATA: Fully implemented with API calls to ServicesNhanVt, AppointmentStatusesTienDM, SystemUserAccount
-     /// 
-     /// All operations are now using API endpoints with proper JWT authentication.
-     /// Search functionality implemented with correct parameters (id, contactPhone, totalAmount).
-     /// LoadDropdownsAsync properly loads all dropdown data from Backend APIs.
-     /// </summary>
+{
     [Authorize]
     public class AppointmentsTienDmsController : Controller
     {
         private string APIEndPoint = "http://localhost:8080/api/";
 
-        public AppointmentsTienDmsController() { }        // GET: AppointmentsTienDms
-        public async Task<IActionResult> Index()
+        public AppointmentsTienDmsController() { }
+        // GET: AppointmentsTienDms (phân trang + search)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 3, int searchId = 0, string searchContactPhone = "", decimal searchTotalAmount = 0)
         {
             using (var httpClient = new HttpClient())
             {
@@ -39,22 +33,103 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenString);
                 }
 
-                using (var response = await httpClient.GetAsync(APIEndPoint + "AppointmentsTienDM"))
+                // Chuẩn bị search request
+                var searchRequest = new
+                {
+                    AppointmentsTienDmid = searchId > 0 ? searchId : (int?)null,
+                    ContactPhone = string.IsNullOrWhiteSpace(searchContactPhone) ? null : searchContactPhone,
+                    TotalAmount = searchTotalAmount > 0 ? searchTotalAmount : (decimal?)null,
+                    CurrentPage = page,
+                    PageSize = pageSize
+                };
+                var json = JsonConvert.SerializeObject(searchRequest);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync(APIEndPoint + "AppointmentsTienDM/search", content))
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        var content = await response.Content.ReadAsStringAsync();
-                        var result = JsonConvert.DeserializeObject<List<AppointmentsTienDm>>(content);
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        // Deserialize JSON bằng model đặc biệt cho API để giữ nguyên tên thuộc tính
+                        var apiResponse = JsonConvert.DeserializeObject<ApiPaginationResult<List<ApiAppointmentDTO>>>(responseContent);
 
-                        if (result != null)
+                        // Chuyển đổi giữa các mô hình cho frontend
+                        var paginationResult = new DNATestingSystem.MVCWebApp.FE.TienDM.Models.PaginationResult<List<AppointmentsTienDm>>
                         {
-                            return View(result);
+                            TotalItems = apiResponse?.totalItems ?? 0,
+                            TotalPages = apiResponse?.totalPages ?? 1,
+                            CurrentPages = apiResponse?.currentPages ?? 1,
+                            PageSize = apiResponse?.pageSize ?? pageSize,
+                            Items = apiResponse?.items?.Select(a => new AppointmentsTienDm
+                            {
+                                AppointmentsTienDmid = a.appointmentsTienDmid,
+                                UserAccountId = a.userAccountId,
+                                ServicesNhanVtid = a.servicesNhanVtid,
+                                AppointmentStatusesTienDmid = a.appointmentStatusesTienDmid,
+                                AppointmentDate = DateOnly.Parse(a.appointmentDate),
+                                AppointmentTime = TimeOnly.Parse(a.appointmentTime),
+                                SamplingMethod = a.samplingMethod,
+                                Address = a.address,
+                                ContactPhone = a.contactPhone,
+                                Notes = a.notes,
+                                CreatedDate = a.createdDate,
+                                ModifiedDate = a.modifiedDate,
+                                TotalAmount = a.totalAmount,
+                                IsPaid = a.isPaid,
+                                // Thêm thuộc tính tạm thời để giữ giá trị từ API
+                                UserAccount = new SystemUserAccount { UserName = a.username },
+                                ServicesNhanVt = new ServicesNhanVt { ServiceName = a.serviceName },
+                                AppointmentStatusesTienDm = new AppointmentStatusesTienDm { StatusName = a.statusName }
+                            }).ToList() ?? new List<AppointmentsTienDm>()
+                        };
+                        ViewBag.TotalPages = paginationResult?.TotalPages ?? 1;
+                        ViewBag.CurrentPage = paginationResult?.CurrentPages ?? 1;
+                        ViewBag.PageSize = paginationResult?.PageSize ?? pageSize;
+                        ViewBag.TotalItems = paginationResult?.TotalItems ?? 0;
+                        ViewBag.SearchId = searchId;
+                        ViewBag.SearchContactPhone = searchContactPhone;
+                        ViewBag.SearchTotalAmount = searchTotalAmount;
+
+                        // Chuyển đổi từ các giá trị đã được lấy từ API sang AppointmentsTienDmDto
+                        var dtoList = new List<DNATestingSystem.Repository.TienDM.ModelExtensions.AppointmentsTienDmDto>();
+
+                        foreach (var a in paginationResult?.Items ?? new List<AppointmentsTienDm>())
+                        {
+                            dtoList.Add(new DNATestingSystem.Repository.TienDM.ModelExtensions.AppointmentsTienDmDto
+                            {
+                                AppointmentsTienDmid = a.AppointmentsTienDmid,
+                                UserAccountId = a.UserAccountId,
+                                // Lấy giá trị từ các đối tượng đã được khởi tạo với dữ liệu từ API
+                                Username = a.UserAccount?.UserName,
+                                ServicesNhanVtid = a.ServicesNhanVtid,
+                                ServiceName = a.ServicesNhanVt?.ServiceName,
+                                AppointmentStatusesTienDmid = a.AppointmentStatusesTienDmid,
+                                StatusName = a.AppointmentStatusesTienDm?.StatusName,
+                                AppointmentDate = a.AppointmentDate,
+                                AppointmentTime = a.AppointmentTime,
+                                SamplingMethod = a.SamplingMethod,
+                                Address = a.Address,
+                                ContactPhone = a.ContactPhone,
+                                Notes = a.Notes,
+                                CreatedDate = a.CreatedDate,
+                                ModifiedDate = a.ModifiedDate,
+                                TotalAmount = a.TotalAmount,
+                                IsPaid = a.IsPaid
+                            });
                         }
+
+                        return View(dtoList ?? new List<DNATestingSystem.Repository.TienDM.ModelExtensions.AppointmentsTienDmDto>());
                     }
                 }
             }
-
-            return View(new List<AppointmentsTienDm>());
+            ViewBag.TotalPages = 1;
+            ViewBag.CurrentPage = 1;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = 0;
+            ViewBag.SearchId = searchId;
+            ViewBag.SearchContactPhone = searchContactPhone;
+            ViewBag.SearchTotalAmount = searchTotalAmount;
+            return View(new List<DNATestingSystem.Repository.TienDM.ModelExtensions.AppointmentsTienDmDto>());
         }
 
         // GET: AppointmentsTienDms/Details/5
@@ -346,7 +421,7 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
             return View("Index", new List<AppointmentsTienDm>());
         }
 
-        public async Task<IActionResult> AppointmentsTienDmList()
+        public IActionResult AppointmentsTienDmList()
         {
             return View();
         }

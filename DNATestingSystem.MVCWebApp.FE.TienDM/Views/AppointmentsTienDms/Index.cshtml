@@ -1,10 +1,9 @@
-@model IEnumerable<DNATestingSystem.Repository.TienDM.Models.AppointmentsTienDm>
-
+@model IEnumerable<DNATestingSystem.Repository.TienDM.ModelExtensions.AppointmentsTienDmDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Appointments List";
 }
 
-<h1>Appointments Management</h1>
+<h1>Appointments List</h1>
 
 <!-- Search Form -->
 <div class="row mb-4">
@@ -14,20 +13,20 @@
                 <h5 class="mb-0">Search Appointments</h5>
             </div>
             <div class="card-body">
-                <form asp-action="Search" method="get" class="row g-3">
+                <form asp-action="Index" method="get" class="row g-3">
                     <div class="col-md-3">
                         <label for="searchId" class="form-label">Appointment ID</label>
-                        <input type="number" class="form-control" id="searchId" name="id" 
+                        <input type="number" class="form-control" id="searchId" name="searchId" 
                                value="@ViewBag.SearchId" placeholder="Enter ID">
                     </div>
                     <div class="col-md-4">
                         <label for="searchContactPhone" class="form-label">Contact Phone</label>
-                        <input type="text" class="form-control" id="searchContactPhone" name="contactPhone" 
+                        <input type="text" class="form-control" id="searchContactPhone" name="searchContactPhone" 
                                value="@ViewBag.SearchContactPhone" placeholder="Enter phone number">
                     </div>
                     <div class="col-md-3">
                         <label for="searchTotalAmount" class="form-label">Total Amount</label>
-                        <input type="number" step="0.01" class="form-control" id="searchTotalAmount" name="totalAmount" 
+                        <input type="number" step="0.01" class="form-control" id="searchTotalAmount" name="searchTotalAmount" 
                                value="@ViewBag.SearchTotalAmount" placeholder="Enter amount">
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
@@ -54,19 +53,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.AppointmentsTienDmid)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContactPhone)
+                Contact Phone
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AppointmentDate)
+                Appointment Date
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AppointmentTime)
+                Appointment Time
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalAmount)
+                Total Amount
             </th>
             <th>
                 Status
@@ -75,7 +74,7 @@
                 Service
             </th>
             <th>
-                User Account
+                User
             </th>
             <th></th>
         </tr>
@@ -84,49 +83,28 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AppointmentsTienDmid)
+                @item.AppointmentsTienDmid
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ContactPhone)
+                @item.ContactPhone
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AppointmentDate)
+                @item.AppointmentDate.ToString("yyyy-MM-dd")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AppointmentTime)
+                @item.AppointmentTime.ToString("HH:mm")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalAmount)
+                @item.TotalAmount.ToString("N0")
             </td>
             <td>
-                @if (item.AppointmentStatusesTienDm != null)
-                {
-                    @item.AppointmentStatusesTienDm.StatusName
-                }
-                else
-                {
-                    <span class="text-muted">No Status</span>
-                }
+                @(string.IsNullOrEmpty(item.StatusName) ? "No Status" : item.StatusName)
             </td>
             <td>
-                @if (item.ServicesNhanVt != null)
-                {
-                    @item.ServicesNhanVt.ServiceName
-                }
-                else
-                {
-                    <span class="text-muted">No Service</span>
-                }
+                @(string.IsNullOrEmpty(item.ServiceName) ? "No Service" : item.ServiceName)
             </td>
             <td>
-                @if (item.UserAccount != null)
-                {
-                    @item.UserAccount.UserName
-                }
-                else
-                {
-                    <span class="text-muted">No User</span>
-                }
+                @(string.IsNullOrEmpty(item.Username) ? "No User" : item.Username)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.AppointmentsTienDmid" class="btn btn-sm btn-outline-warning">Edit</a>
@@ -134,6 +112,32 @@
                 <a asp-action="Delete" asp-route-id="@item.AppointmentsTienDmid" class="btn btn-sm btn-outline-danger">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+<div>
+    Page @ViewBag.CurrentPage / @ViewBag.TotalPages
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a asp-action="Index" asp-route-page="@(ViewBag.CurrentPage - 1)" asp-route-pageSize="@ViewBag.PageSize"
+           asp-route-searchId="@ViewBag.SearchId" asp-route-searchContactPhone="@ViewBag.SearchContactPhone" asp-route-searchTotalAmount="@ViewBag.SearchTotalAmount">Previous</a>
+    }
+    @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+    {
+        if (i == (int)ViewBag.CurrentPage)
+        {
+            <span><b>@i</b></span>
+        }
+        else
+        {
+            <a asp-action="Index" asp-route-page="@i" asp-route-pageSize="@ViewBag.PageSize"
+               asp-route-searchId="@ViewBag.SearchId" asp-route-searchContactPhone="@ViewBag.SearchContactPhone" asp-route-searchTotalAmount="@ViewBag.SearchTotalAmount">@i</a>
+        }
+    }
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a asp-action="Index" asp-route-page="@(ViewBag.CurrentPage + 1)" asp-route-pageSize="@ViewBag.PageSize"
+           asp-route-searchId="@ViewBag.SearchId" asp-route-searchContactPhone="@ViewBag.SearchContactPhone" asp-route-searchTotalAmount="@ViewBag.SearchTotalAmount">Next</a>
+    }
+</div>

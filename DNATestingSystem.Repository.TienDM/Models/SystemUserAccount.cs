@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace DNATestingSystem.Repository.TienDM.Models;
 
@@ -36,19 +35,17 @@ public partial class SystemUserAccount
 
     public bool IsActive { get; set; }
 
-    // Keep JsonIgnore to avoid circular reference when serializing collections
-    [JsonIgnore]
     public virtual ICollection<AppointmentsTienDm> AppointmentsTienDms { get; set; } = new List<AppointmentsTienDm>();
 
-    [JsonIgnore]
     public virtual ICollection<BlogsHuyLhg> BlogsHuyLhgs { get; set; } = new List<BlogsHuyLhg>();
 
-    [JsonIgnore]
     public virtual ICollection<OrderGiapHd> OrderGiapHds { get; set; } = new List<OrderGiapHd>();
 
-    [JsonIgnore]
     public virtual ICollection<ProfileThinhLc> ProfileThinhLcs { get; set; } = new List<ProfileThinhLc>();
 
-    [JsonIgnore]
-    public virtual ICollection<ServicesNhanVt> ServicesNhanVts { get; set; } = new List<ServicesNhanVt>();
+    public virtual ICollection<UserServiceNhanVt> UserServiceNhanVtCreatedByNavigations { get; set; } = new List<UserServiceNhanVt>();
+
+    public virtual ICollection<UserServiceNhanVt> UserServiceNhanVtModifiedByNavigations { get; set; } = new List<UserServiceNhanVt>();
+
+    public virtual ICollection<UserServiceNhanVt> UserServiceNhanVtUserAccounts { get; set; } = new List<UserServiceNhanVt>();
 }

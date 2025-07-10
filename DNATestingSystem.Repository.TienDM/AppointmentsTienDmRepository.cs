@@ -31,7 +31,7 @@ namespace DNATestingSystem.Repository.TienDM
                 // Log the exception or rethrow with more details
                 throw new Exception($"Error in GetAllAsync: {ex.Message}", ex);
             }
-        }  
+        }
 
         public new async Task<AppointmentsTienDm> GetByIdAsync(int id)
         {
@@ -76,11 +76,16 @@ namespace DNATestingSystem.Repository.TienDM
 
             var query = BuildSearchQuery(id, contactPhone, totalAmount);
             return await ExecutePaginatedQuery(query, page, pageSize);
-        }        
+        }
 
         private IQueryable<AppointmentsTienDm> BuildSearchQuery(int id, string? contactPhone, decimal totalAmount)
         {
+            // Include navigation properties for better data display
             return _context.AppointmentsTienDms
+                .Include(a => a.ServicesNhanVt) // for ServiceName
+                .Include(a => a.UserAccount)    // for Username
+                .Include(a => a.AppointmentStatusesTienDm) // for StatusName
+                .AsNoTracking() // ensure no tracking for read-only queries
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
                     && (id == 0 || a.AppointmentsTienDmid == id));

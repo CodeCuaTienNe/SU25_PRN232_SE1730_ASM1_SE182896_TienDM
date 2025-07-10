@@ -1,0 +1,48 @@
+D:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.deps.json
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.dll
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.pdb
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.AssemblyReference.cache
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.GeneratedMSBuildEditorConfig.editorconfig
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfoInputs.cache
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfo.cs
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.CoreCompileInputs.cache
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.sourcelink.json
+D:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATesti.6F0781D9.Up2Date
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\refint\DNATestingSystem.Services.TienDM.dll
+d:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\TIEN'S LIBRABRY\STUDY\PRN232\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\ref\DNATestingSystem.Services.TienDM.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.deps.json
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.pdb
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.AssemblyReference.cache
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.GeneratedMSBuildEditorConfig.editorconfig
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfoInputs.cache
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfo.cs
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.CoreCompileInputs.cache
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.sourcelink.json
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATesti.6F0781D9.Up2Date
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\refint\DNATestingSystem.Services.TienDM.dll
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\PRN232_TienHover_Assignement\ASSIGNMENT\SU25_PRN232_SE1730_ASM1_TienDM_00035845\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\ref\DNATestingSystem.Services.TienDM.dll
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.deps.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.dll
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.pdb
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.AssemblyReference.cache
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.GeneratedMSBuildEditorConfig.editorconfig
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfoInputs.cache
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfo.cs
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.CoreCompileInputs.cache
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.sourcelink.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATesti.6F0781D9.Up2Date
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\refint\DNATestingSystem.Services.TienDM.dll
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\ref\DNATestingSystem.Services.TienDM.dll

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace DNATestingSystem.Repository.TienDM.Models;
 
@@ -32,15 +31,9 @@ public partial class ServicesNhanVt
 
     public bool? IsActive { get; set; }
 
-    public int UserAccountId { get; set; }
-
-    // Keep JsonIgnore to avoid circular reference when serializing appointments collection
-    [JsonIgnore]
     public virtual ICollection<AppointmentsTienDm> AppointmentsTienDms { get; set; } = new List<AppointmentsTienDm>();
 
-    // Allow serialization of navigation properties for display
-    public virtual ServiceCategoriesNhanVt? ServiceCategoryNhanVt { get; set; }
+    public virtual ServiceCategoriesNhanVt ServiceCategoryNhanVt { get; set; } = null!;
 
-    // Allow serialization of navigation properties for display
-    public virtual SystemUserAccount? UserAccount { get; set; }
+    public virtual ICollection<UserServiceNhanVt> UserServiceNhanVts { get; set; } = new List<UserServiceNhanVt>();
 }

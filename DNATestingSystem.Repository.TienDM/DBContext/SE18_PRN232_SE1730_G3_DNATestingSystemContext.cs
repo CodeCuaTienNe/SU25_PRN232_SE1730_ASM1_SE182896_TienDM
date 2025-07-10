@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using DNATestingSystem.Repository.TienDM.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DNATestingSystem.Repository.TienDM.DBContext;
 
@@ -51,40 +50,17 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
     public virtual DbSet<TransactionsGiapHd> TransactionsGiapHds { get; set; }
 
+    public virtual DbSet<UserServiceNhanVt> UserServiceNhanVts { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-    //=> optionsBuilder.UseSqlServer("Data Source=LAPTOP-09C40UJD\\SQLEXPRESS;Initial Catalog=SE18_PRN232_SE1730_G3_DNATestingSystem;Persist Security Info=True;User ID=sa;Password=12345;Encrypt=False");
-        => optionsBuilder.UseSqlServer(GetConnectionString());
-
-    private String GetConnectionString()
-    {
-        IConfiguration config = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", true, true)
-            .Build();
-        return config.GetConnectionString("DefaultConnection");
-
-    }
-
-
-    //public static string GetConnectionString(string connectionStringName)
-    //{
-    //    var config = new ConfigurationBuilder()
-    //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    //        .AddJsonFile("appsettings.json")
-    //        .Build();
-
-    //    string connectionString = config.GetConnectionString(connectionStringName);
-    //    return connectionString;
-    //}
-
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //    => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+        => optionsBuilder.UseSqlServer("Server=(local);Uid=sa;Pwd=12345;Database=SE18_PRN232_SE1730_G3_DNATestingSystem;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AlleleResultsPhienNt>(entity =>
         {
-            entity.HasKey(e => e.PhienNtid).HasName("PK__AlleleRe__EC32F07A4D4601AC");
+            entity.HasKey(e => e.PhienNtid).HasName("PK__AlleleRe__EC32F07A2C2A9955");
 
             entity.ToTable("AlleleResultsPhienNT");
 
@@ -120,7 +96,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<AppointmentStatusesTienDm>(entity =>
         {
-            entity.HasKey(e => e.AppointmentStatusesTienDmid).HasName("PK__Appointm__3E14D369CB49C20F");
+            entity.HasKey(e => e.AppointmentStatusesTienDmid).HasName("PK__Appointm__3E14D3690DE327DF");
 
             entity.ToTable("AppointmentStatusesTienDM");
 
@@ -139,7 +115,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<AppointmentsTienDm>(entity =>
         {
-            entity.HasKey(e => e.AppointmentsTienDmid).HasName("PK__Appointm__590F50BC05F92C1E");
+            entity.HasKey(e => e.AppointmentsTienDmid).HasName("PK__Appointm__590F50BC0470E1A0");
 
             entity.ToTable("AppointmentsTienDM");
 
@@ -184,7 +160,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<BlogCategoriesHuyLhg>(entity =>
         {
-            entity.HasKey(e => e.BlogCategoryHuyLhgid).HasName("PK__BlogCate__A82B4E0C8995D4C1");
+            entity.HasKey(e => e.BlogCategoryHuyLhgid).HasName("PK__BlogCate__A82B4E0C1E1FA586");
 
             entity.ToTable("BlogCategoriesHuyLHG");
 
@@ -201,7 +177,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<BlogsHuyLhg>(entity =>
         {
-            entity.HasKey(e => e.BlogsHuyLhgid).HasName("PK__BlogsHuy__25602EFE165DAD80");
+            entity.HasKey(e => e.BlogsHuyLhgid).HasName("PK__BlogsHuy__25602EFEA8C580C8");
 
             entity.ToTable("BlogsHuyLHG");
 
@@ -237,7 +213,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<DnaTestsPhienNt>(entity =>
         {
-            entity.HasKey(e => e.PhienNtid).HasName("PK__DnaTests__EC32F07A5C7E828A");
+            entity.HasKey(e => e.PhienNtid).HasName("PK__DnaTests__EC32F07A51896186");
 
             entity.ToTable("DnaTestsPhienNT");
 
@@ -256,11 +232,11 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<LociPhienNt>(entity =>
         {
-            entity.HasKey(e => e.PhienNtid).HasName("PK__LociPhie__EC32F07AA07058EE");
+            entity.HasKey(e => e.PhienNtid).HasName("PK__LociPhie__EC32F07A20079B12");
 
             entity.ToTable("LociPhienNT");
 
-            entity.HasIndex(e => e.Name, "UQ__LociPhie__737584F6922A9401").IsUnique();
+            entity.HasIndex(e => e.Name, "UQ__LociPhie__737584F67EA80875").IsUnique();
 
             entity.Property(e => e.PhienNtid).HasColumnName("PhienNTId");
             entity.Property(e => e.CreatedAt)
@@ -280,7 +256,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<LocusMatchResultsPhienNt>(entity =>
         {
-            entity.HasKey(e => e.PhienNtid).HasName("PK__LocusMat__EC32F07AB466E8A1");
+            entity.HasKey(e => e.PhienNtid).HasName("PK__LocusMat__EC32F07A0D648AA5");
 
             entity.ToTable("LocusMatchResultsPhienNT");
 
@@ -304,7 +280,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<OrderGiapHd>(entity =>
         {
-            entity.HasKey(e => e.OrderGiapHdid).HasName("PK__OrderGia__FFB6F6F5315AF37F");
+            entity.HasKey(e => e.OrderGiapHdid).HasName("PK__OrderGia__FFB6F6F5971ED2A7");
 
             entity.ToTable("OrderGiapHD");
 
@@ -363,7 +339,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<ProfileRelationshipThinhLc>(entity =>
         {
-            entity.HasKey(e => e.ProfileRelationshipThinhLcid).HasName("PK__ProfileR__46E9B9D4FFFEA0A2");
+            entity.HasKey(e => e.ProfileRelationshipThinhLcid).HasName("PK__ProfileR__46E9B9D48C8DD3B7");
 
             entity.ToTable("ProfileRelationshipThinhLC");
 
@@ -395,7 +371,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<ProfileThinhLc>(entity =>
         {
-            entity.HasKey(e => e.ProfileThinhLcid).HasName("PK__ProfileT__D11462A45EC7B06E");
+            entity.HasKey(e => e.ProfileThinhLcid).HasName("PK__ProfileT__D11462A4A75E8053");
 
             entity.ToTable("ProfileThinhLC");
 
@@ -430,7 +406,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<SampleThinhLc>(entity =>
         {
-            entity.HasKey(e => e.SampleThinhLcid).HasName("PK__SampleTh__078B5037E4601A8F");
+            entity.HasKey(e => e.SampleThinhLcid).HasName("PK__SampleTh__078B5037F0C5DCBC");
 
             entity.ToTable("SampleThinhLC");
 
@@ -466,7 +442,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<SampleTypeThinhLc>(entity =>
         {
-            entity.HasKey(e => e.SampleTypeThinhLcid).HasName("PK__SampleTy__4B9B39CE1A412594");
+            entity.HasKey(e => e.SampleTypeThinhLcid).HasName("PK__SampleTy__4B9B39CE2BAF5CF1");
 
             entity.ToTable("SampleTypeThinhLC");
 
@@ -490,7 +466,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<ServiceCategoriesNhanVt>(entity =>
         {
-            entity.HasKey(e => e.ServiceCategoryNhanVtid).HasName("PK__ServiceC__F96A229DED976552");
+            entity.HasKey(e => e.ServiceCategoryNhanVtid).HasName("PK__ServiceC__F96A229D0276EC33");
 
             entity.ToTable("ServiceCategoriesNhanVT");
 
@@ -507,7 +483,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<ServicesNhanVt>(entity =>
         {
-            entity.HasKey(e => e.ServicesNhanVtid).HasName("PK__Services__049747BFE6EF5F8F");
+            entity.HasKey(e => e.ServicesNhanVtid).HasName("PK__Services__049747BFE734E59E");
 
             entity.ToTable("ServicesNhanVT");
 
@@ -528,17 +504,11 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
             entity.Property(e => e.ServiceName)
                 .HasMaxLength(200)
                 .IsUnicode(false);
-            entity.Property(e => e.UserAccountId).HasColumnName("UserAccountID");
 
             entity.HasOne(d => d.ServiceCategoryNhanVt).WithMany(p => p.ServicesNhanVts)
                 .HasForeignKey(d => d.ServiceCategoryNhanVtid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ServicesNhanVT_ServiceCategoriesNhanVT");
-
-            entity.HasOne(d => d.UserAccount).WithMany(p => p.ServicesNhanVts)
-                .HasForeignKey(d => d.UserAccountId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ServicesNhanVT_UserAccount");
         });
 
         modelBuilder.Entity<SystemUserAccount>(entity =>
@@ -564,7 +534,7 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
 
         modelBuilder.Entity<TransactionsGiapHd>(entity =>
         {
-            entity.HasKey(e => e.TransactionsGiapHdid).HasName("PK__Transact__69E8B87120B4C992");
+            entity.HasKey(e => e.TransactionsGiapHdid).HasName("PK__Transact__69E8B871B0AA3ADC");
 
             entity.ToTable("TransactionsGiapHD");
 
@@ -596,6 +566,46 @@ public partial class SE18_PRN232_SE1730_G3_DNATestingSystemContext : DbContext
                 .HasForeignKey(d => d.OrderGiapHdid)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_TransactionsGiapHD_OrderGiapHD");
+        });
+
+        modelBuilder.Entity<UserServiceNhanVt>(entity =>
+        {
+            entity.HasKey(e => e.UserServiceNhanVtid).HasName("PK__UserServ__0AA6120406EE5ADB");
+
+            entity.ToTable("UserServiceNhanVT");
+
+            entity.HasIndex(e => new { e.UserAccountId, e.ServicesNhanVtid }, "UQ_UserServiceNhanVT_UserService").IsUnique();
+
+            entity.Property(e => e.UserServiceNhanVtid).HasColumnName("UserServiceNhanVTID");
+            entity.Property(e => e.AssignedDate)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IsActive).HasDefaultValue(true);
+            entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
+            entity.Property(e => e.Notes)
+                .HasMaxLength(500)
+                .IsUnicode(false);
+            entity.Property(e => e.Role)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.ServicesNhanVtid).HasColumnName("ServicesNhanVTID");
+            entity.Property(e => e.UserAccountId).HasColumnName("UserAccountID");
+
+            entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.UserServiceNhanVtCreatedByNavigations)
+                .HasForeignKey(d => d.CreatedBy)
+                .HasConstraintName("FK_UserServiceNhanVT_CreatedBy");
+
+            entity.HasOne(d => d.ModifiedByNavigation).WithMany(p => p.UserServiceNhanVtModifiedByNavigations)
+                .HasForeignKey(d => d.ModifiedBy)
+                .HasConstraintName("FK_UserServiceNhanVT_ModifiedBy");
+
+            entity.HasOne(d => d.ServicesNhanVt).WithMany(p => p.UserServiceNhanVts)
+                .HasForeignKey(d => d.ServicesNhanVtid)
+                .HasConstraintName("FK_UserServiceNhanVT_ServicesNhanVT");
+
+            entity.HasOne(d => d.UserAccount).WithMany(p => p.UserServiceNhanVtUserAccounts)
+                .HasForeignKey(d => d.UserAccountId)
+                .HasConstraintName("FK_UserServiceNhanVT_UserAccount");
         });
 
         OnModelCreatingPartial(modelBuilder);
