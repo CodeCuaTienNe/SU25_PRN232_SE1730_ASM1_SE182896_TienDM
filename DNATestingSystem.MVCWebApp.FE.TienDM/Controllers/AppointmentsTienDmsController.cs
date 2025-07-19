@@ -471,7 +471,9 @@ namespace DNATestingSystem.MVCWebApp.FE.TienDM.Controllers
             }
 
             return RedirectToAction(nameof(Index));
-        }        // GET: AppointmentsTienDms/Search
+        }        
+        
+        // GET: AppointmentsTienDms/Search
         public async Task<IActionResult> Search(int id = 0, string contactPhone = "", decimal totalAmount = 0)
         {
             // Pass search parameters to ViewBag for maintaining search state

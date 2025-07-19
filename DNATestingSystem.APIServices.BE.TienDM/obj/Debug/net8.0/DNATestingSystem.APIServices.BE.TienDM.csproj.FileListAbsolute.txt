@@ -213,7 +213,6 @@ D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienD
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.ClientModel.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.Drawing.Common.dll
-D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.Formats.Asn1.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.Memory.Data.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\System.Runtime.Caching.dll
@@ -246,11 +245,6 @@ D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienD
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\DNATestingSystem.APIServices.BE.TienDM.sourcelink.json
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets.build.json
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets.development.json
-D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets\msbuild.DNATestingSystem.APIServices.BE.TienDM.Microsoft.AspNetCore.StaticWebAssets.props
-D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets\msbuild.build.DNATestingSystem.APIServices.BE.TienDM.props
-D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.DNATestingSystem.APIServices.BE.TienDM.props
-D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.DNATestingSystem.APIServices.BE.TienDM.props
-D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets.pack.json
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\scopedcss\bundle\DNATestingSystem.APIServices.BE.TienDM.styles.css
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\DNATesti.91DFE27D.Up2Date
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\DNATestingSystem.APIServices.BE.TienDM.dll
@@ -263,3 +257,11 @@ D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienD
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Microsoft.OData.Edm.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Microsoft.OData.ModelBuilder.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\Microsoft.Spatial.dll
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\bin\Debug\net8.0\DNATestingSystem.APIServices.BE.TienDM.staticwebassets.endpoints.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.APIServices.BE.TienDM\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

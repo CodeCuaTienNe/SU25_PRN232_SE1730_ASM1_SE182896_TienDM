@@ -65,55 +65,6 @@ namespace DNATestingSystem.Repository.TienDM
         }
 
 
-        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(SearchAppointmentsTienDm searchRequest)
-        {
-            // Set default values if null
-            var page = searchRequest.CurrentPage ?? 1;
-            var pageSize = searchRequest.PageSize ?? 10;
-            var contactPhone = searchRequest.ContactPhone;
-            var totalAmount = searchRequest.TotalAmount ?? 0;
-            var id = searchRequest.AppointmentsTienDmid ?? 0;
-
-            var query = BuildSearchQuery(id, contactPhone, totalAmount);
-            return await ExecutePaginatedQuery(query, page, pageSize);
-        }
-
-        private IQueryable<AppointmentsTienDm> BuildSearchQuery(int id, string? contactPhone, decimal totalAmount)
-        {
-            // Include navigation properties for better data display
-            return _context.AppointmentsTienDms
-                .Include(a => a.ServicesNhanVt) // for ServiceName
-                .Include(a => a.UserAccount)    // for Username
-                .Include(a => a.AppointmentStatusesTienDm) // for StatusName
-                .AsNoTracking() // ensure no tracking for read-only queries
-                .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
-                    && (totalAmount == 0 || a.TotalAmount == totalAmount)
-                    && (id == 0 || a.AppointmentsTienDmid == id));
-        }
-
-        private async Task<PaginationResult<List<AppointmentsTienDm>>> ExecutePaginatedQuery(IQueryable<AppointmentsTienDm> query, int page, int pageSize)
-        {
-            // Get total count for pagination
-            var totalItems = await query.CountAsync();
-
-            // Calculate total pages
-            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-            // Apply pagination
-            var appointments = await query
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return new PaginationResult<List<AppointmentsTienDm>>
-            {
-                TotalItems = totalItems,
-                TotalPages = totalPages,
-                CurrentPages = page,
-                PageSize = pageSize,
-                Items = appointments ?? new List<AppointmentsTienDm>()
-            };
-        }
 
         public new async Task<int> CreateAsync(AppointmentsTienDm entity)
         {
@@ -137,6 +88,51 @@ namespace DNATestingSystem.Repository.TienDM
                 return false;
 
             return await base.RemoveAsync(appointment);
+        }
+        public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(SearchAppointmentsTienDm searchRequest)
+        {
+            // Set default values if null
+            var page = searchRequest.CurrentPage ?? 1;
+            var pageSize = searchRequest.PageSize ?? 10;
+            var contactPhone = searchRequest.ContactPhone;
+            var totalAmount = searchRequest.TotalAmount ?? 0;
+            var id = searchRequest.AppointmentsTienDmid ?? 0;
+
+            var query = BuildSearchQuery(id, contactPhone, totalAmount);
+            return await ExecutePaginatedQuery(query, page, pageSize);
+        }
+
+        private IQueryable<AppointmentsTienDm> BuildSearchQuery(int id, string? contactPhone, decimal totalAmount)
+        {
+            return _context.AppointmentsTienDms
+                .Include(a => a.ServicesNhanVt) 
+                .Include(a => a.UserAccount)  
+                .Include(a => a.AppointmentStatusesTienDm) 
+                .AsNoTracking() // ensure no tracking for read-only queries
+                .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
+                    && (totalAmount == 0 || a.TotalAmount == totalAmount)
+                    && (id == 0 || a.AppointmentsTienDmid == id));
+        }
+
+        private async Task<PaginationResult<List<AppointmentsTienDm>>> ExecutePaginatedQuery(IQueryable<AppointmentsTienDm> query, int page, int pageSize)
+        {
+            var totalItems = await query.CountAsync();
+
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var appointments = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PaginationResult<List<AppointmentsTienDm>>
+            {
+                TotalItems = totalItems,
+                TotalPages = totalPages,
+                CurrentPages = page,
+                PageSize = pageSize,
+                Items = appointments ?? new List<AppointmentsTienDm>()
+            };
         }
     }
 }

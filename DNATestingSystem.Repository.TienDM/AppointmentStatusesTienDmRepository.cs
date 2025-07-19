@@ -83,7 +83,6 @@ namespace DNATestingSystem.Repository.TienDM
             }
             else
             {
-                // Hard delete if not being used
                 return await RemoveAsync(status);
             }
         }

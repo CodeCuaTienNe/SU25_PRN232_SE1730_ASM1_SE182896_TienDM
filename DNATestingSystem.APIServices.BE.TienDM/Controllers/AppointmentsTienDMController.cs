@@ -55,7 +55,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             return Ok(appointment);
         }
 
-        /// </remarks>
+        //Create
         [HttpPost]
         public async Task<ActionResult<bool>> Create([FromBody] AppointmentsTienDmCreateRequest request)
         {
@@ -70,6 +70,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         }
 
 
+        //Update
         [HttpPut("{id}")]
         public async Task<ActionResult<bool>> Update(int id, [FromBody] AppointmentsTienDmCreateRequest request)
         {
