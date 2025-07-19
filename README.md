@@ -4,14 +4,6 @@
 [![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core-orange.svg)](https://docs.microsoft.com/en-us/ef/)
 [![API](https://img.shields.io/badge/API-REST-green.svg)](https://restfulapi.net/)
 
-## Project Overview
-
-A comprehensive DNA Testing System developed as part of the **PRN232 - Advanced Cross-Platform Development with .NET API** course assignment.
-
-**Developed by:** Doan Minh Tien  
-**Instructor:** Le Nguyen Son Vu  
-**Institution:** FPT University
-
 ## System Description
 
 This system manages DNA testing services for a medical facility, providing both civil and administrative DNA testing capabilities.
