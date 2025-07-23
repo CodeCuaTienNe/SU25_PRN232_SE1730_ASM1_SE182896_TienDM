@@ -7,6 +7,7 @@ namespace DNATestingSystem.Services.TienDM
 {
     public interface IAppointmentsTienDmService
     {
+        Task<List<AppointmentsTienDm>> GetAllBasicAsync();
         Task<List<AppointmentsTienDmDto>> GetAllAsync();
         Task<AppointmentsTienDmDto?> GetByIdAsync(int id);
         Task<PaginationResult<List<AppointmentsTienDmDto>>> SearchAsync(SearchAppointmentsTienDm searchRequest);

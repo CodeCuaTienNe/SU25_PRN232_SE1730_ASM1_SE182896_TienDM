@@ -27,16 +27,22 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             _appointmentsTienDmService = appointmentsTienDmService;
         }
 
-        // GET: api/AppointmentsTienDM (không phân trang)
-        [HttpGet]
-        [EnableQuery]
-        public async Task<ActionResult<List<AppointmentsTienDmDto>>> GetAll()
+        [HttpGet("basic")]
+        public async Task<ActionResult<List<AppointmentsTienDm>>> GetAll()
         {
-            var appointments = await _appointmentsTienDmService.GetAllAsync();
+            var appointments = await _appointmentsTienDmService.GetAllBasicAsync();
             return Ok(appointments);
         }
 
-        // GET: api/AppointmentsTienDM/paginated (có phân trang)
+        [HttpGet("search")]
+        [EnableQuery]
+        public async Task<ActionResult<List<AppointmentsTienDmDto>>>Search()
+        {
+            var appointments =  _appointmentsTienDmService.GetAllAsync().Result.AsQueryable();
+            return Ok(appointments);
+        }
+
+
         [HttpGet("paginated")]
         public async Task<ActionResult<PaginationResult<List<AppointmentsTienDmDto>>>> GetAllPaginated([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
@@ -78,7 +84,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             return result > 0;
         }
 
-        // DELETE: api/AppointmentsTienDM/{id}
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
@@ -86,7 +92,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             return result;
         }
 
-        // POST: api/AppointmentsTienDM/search (tìm kiếm nâng cao, có phân trang, trả về DTO)
+
         [HttpPost("search")]
         public async Task<ActionResult<PaginationResult<List<AppointmentsTienDmDto>>>> Search([FromBody] SearchAppointmentsTienDm searchRequest)
         {

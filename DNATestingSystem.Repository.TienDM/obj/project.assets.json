@@ -4380,11 +4380,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Class ASM\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj",
+      "projectUniqueName": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj",
       "projectName": "DNATestingSystem.Repository.TienDM",
-      "projectPath": "D:\\Class ASM\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj",
+      "projectPath": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\DNATestingSystem.Repository.TienDM.csproj",
       "packagesPath": "C:\\Users\\2004d\\.nuget\\packages\\",
-      "outputPath": "D:\\Class ASM\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\obj\\",
+      "outputPath": "D:\\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\\DNATestingSystem.Repository.TienDM\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

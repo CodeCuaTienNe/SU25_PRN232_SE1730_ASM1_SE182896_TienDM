@@ -14,6 +14,10 @@ namespace DNATestingSystem.Services.TienDM
         {
             _repository = new AppointmentsTienDmRepository();
         }
+        public async Task<List<AppointmentsTienDm>> GetAllBasicAsync()
+        {
+            return await _repository.GetAllAsync();
+        }
 
         public async Task<List<AppointmentsTienDmDto>> GetAllAsync()
         {

@@ -46,3 +46,19 @@ D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\refint\DNATestingSystem.Services.TienDM.dll
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
 D:\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\ref\DNATestingSystem.Services.TienDM.dll
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.deps.json
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.dll
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\bin\Debug\net8.0\DNATestingSystem.Repository.TienDM.pdb
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.AssemblyReference.cache
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.GeneratedMSBuildEditorConfig.editorconfig
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfoInputs.cache
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.AssemblyInfo.cs
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.csproj.CoreCompileInputs.cache
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.sourcelink.json
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATesti.6F0781D9.Up2Date
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.dll
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\refint\DNATestingSystem.Services.TienDM.dll
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\DNATestingSystem.Services.TienDM.pdb
+D:\Class ASM\SU25_PRN232_SE1730_ASM1_SE182896_TienDM\DNATestingSystem.Services.TienDM\obj\Debug\net8.0\ref\DNATestingSystem.Services.TienDM.dll

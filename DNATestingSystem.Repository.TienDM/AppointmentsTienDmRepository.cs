@@ -21,7 +21,7 @@ namespace DNATestingSystem.Repository.TienDM
         {
             try
             {
-                var appointments = await _context.AppointmentsTienDms
+                var appointments = await _context.AppointmentsTienDms.Include(a => a.ServicesNhanVt).Include(b => b.AppointmentStatusesTienDm).OrderByDescending(o => o.AppointmentsTienDmid)
                     .ToListAsync();
 
                 return appointments ?? new List<AppointmentsTienDm>();
@@ -53,14 +53,34 @@ namespace DNATestingSystem.Repository.TienDM
 
         public async Task<PaginationResult<List<AppointmentsTienDm>>> GetAllPaginatedAsync(int page, int pageSize)
         {
-            // Use empty search criteria to get all items with pagination
-            return await SearchAsync(0, string.Empty, 0, page, pageSize);
+            // Use empty search criteria to get all items with pagination, sorted by id desc
+            var result = await SearchAsync(0, string.Empty, 0, page, pageSize);
+            if (result == null)
+            {
+                return new PaginationResult<List<AppointmentsTienDm>>
+                {
+                    TotalItems = 0,
+                    TotalPages = 0,
+                    CurrentPages = page,
+                    PageSize = pageSize,
+                    Items = new List<AppointmentsTienDm>()
+                };
+            }
+            if (result.Items != null)
+            {
+                result.Items = result.Items.OrderByDescending(a => a.AppointmentsTienDmid).ToList();
+            }
+            else
+            {
+                result.Items = new List<AppointmentsTienDm>();
+            }
+            return result;
         }
 
 
         public async Task<PaginationResult<List<AppointmentsTienDm>>> SearchAsync(int id, string contactPhone, decimal totalAmount, int page, int pageSize)
         {
-            var query = BuildSearchQuery(id, contactPhone, totalAmount);
+            var query = BuildSearchQuery(id, contactPhone, totalAmount).OrderByDescending(a => a.AppointmentsTienDmid);
             return await ExecutePaginatedQuery(query, page, pageSize);
         }
 
@@ -98,16 +118,16 @@ namespace DNATestingSystem.Repository.TienDM
             var totalAmount = searchRequest.TotalAmount ?? 0;
             var id = searchRequest.AppointmentsTienDmid ?? 0;
 
-            var query = BuildSearchQuery(id, contactPhone, totalAmount);
+            var query = BuildSearchQuery(id, contactPhone, totalAmount).OrderByDescending(a => a.AppointmentsTienDmid);
             return await ExecutePaginatedQuery(query, page, pageSize);
         }
 
         private IQueryable<AppointmentsTienDm> BuildSearchQuery(int id, string? contactPhone, decimal totalAmount)
         {
             return _context.AppointmentsTienDms
-                .Include(a => a.ServicesNhanVt) 
-                .Include(a => a.UserAccount)  
-                .Include(a => a.AppointmentStatusesTienDm) 
+                .Include(a => a.ServicesNhanVt)
+                .Include(a => a.UserAccount)
+                .Include(a => a.AppointmentStatusesTienDm)
                 .AsNoTracking() // ensure no tracking for read-only queries
                 .Where(a => (string.IsNullOrEmpty(contactPhone) || a.ContactPhone.Contains(contactPhone))
                     && (totalAmount == 0 || a.TotalAmount == totalAmount)
@@ -117,9 +137,8 @@ namespace DNATestingSystem.Repository.TienDM
         private async Task<PaginationResult<List<AppointmentsTienDm>>> ExecutePaginatedQuery(IQueryable<AppointmentsTienDm> query, int page, int pageSize)
         {
             var totalItems = await query.CountAsync();
-
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
+            // Ensure sorting by id desc for pagination as well
             var appointments = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)

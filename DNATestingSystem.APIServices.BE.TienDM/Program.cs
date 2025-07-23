@@ -36,6 +36,11 @@ builder.Services.AddScoped<ISystemUserAccountService, SystemUserAccountService>(
 builder.Services.AddScoped<IServicesNhanVtService, ServicesNhanVtService>();
 
 //OData
+builder.Services.AddControllers().AddOData(options =>
+{
+    options.Select().Filter().OrderBy().Expand().SetMaxTop(null).Count();
+    options.AddRouteComponents("odata", GetEdmModel());
+});
 static IEdmModel GetEdmModel()
 {
     var odataBuilder = new ODataConventionModelBuilder();
@@ -43,11 +48,6 @@ static IEdmModel GetEdmModel()
     odataBuilder.EntitySet<AppointmentsTienDm>("AppointmentsTienDm");
     return odataBuilder.GetEdmModel();
 }
-builder.Services.AddControllers().AddOData(options =>
-{
-    options.Select().Filter().OrderBy().Expand().SetMaxTop(null).Count();
-    options.AddRouteComponents("odata", GetEdmModel());
-});
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>

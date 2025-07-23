@@ -135,8 +135,8 @@ in
 │  └─────────────────────────┘ └─────────────────────────┘       │
 ├─────────────────────────────────────────────────────────────────┤
 │  ┌─────────────────────────┐ ┌─────────────────────────┐       │
-│  │   5. Donut Chart        │ │   6. Table/Matrix       │       │
-│  │   Payment Status        │ │   Detailed Data         │       │
+│  │   5. Donut Chart        │ │   6. Funnel Chart       │       │
+│  │   Payment Status        │ │   Process Stages        │       │
 │  └─────────────────────────┘ └─────────────────────────┘       │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -276,38 +276,62 @@ DIVIDE([Paid Count], [Paid Count] + [Unpaid Count], 0) * 100
 
 ---
 
-### 6. Table/Matrix - Bảng dữ liệu chi tiết
+---
 
-**Columns hiển thị:**
+### 6. Funnel Chart - Quy trình xử lý DNA Testing
 
-- `appointmentDate`
-- `username`
-- `serviceName`
-- `statusName`
-- `totalAmount`
-- `isPaid`
-- `samplingMethod`
+**Dữ liệu cần:**
 
-**Conditional Formatting:**
+- Category: Các giai đoạn xử lý
+- Values: Số lượng appointments ở từng giai đoạn
+
+**Power Query để tạo Process Stages:**
+
+```m
+#"Added Process Stage" = Table.AddColumn(Appointments, "ProcessStage",
+    each if [StatusName] = "Pending" then "1. Đặt lịch hẹn"
+    else if [StatusName] = "Confirmed" then "2. Xác nhận lịch hẹn"
+    else if [StatusName] = "In Progress" then "3. Lấy mẫu DNA"
+    else if [StatusName] = "Testing" then "4. Phân tích mẫu"
+    else if [StatusName] = "Completed" then "5. Hoàn thành"
+    else "6. Khác")
+```
+
+**DAX Measures:**
 
 ```dax
-// Màu cho Payment Status
-Payment Color =
-IF(
-    SELECTEDVALUE(Appointments[IsPaid]) = TRUE,
-    "Green",
-    "Red"
+Stage 1 - Appointment Booked =
+CALCULATE(
+    COUNTROWS(Appointments),
+    Appointments[StatusName] IN {"Pending", "Confirmed", "In Progress", "Testing", "Completed"}
 )
 
-// Màu cho Total Amount
-Amount Color =
-SWITCH(
-    TRUE(),
-    SELECTEDVALUE(Appointments[TotalAmount]) >= 1000000, "Green",
-    SELECTEDVALUE(Appointments[TotalAmount]) >= 500000, "Orange",
-    "Red"
+Stage 2 - Confirmed =
+CALCULATE(
+    COUNTROWS(Appointments),
+    Appointments[StatusName] IN {"Confirmed", "In Progress", "Testing", "Completed"}
+)
+
+Stage 3 - Sample Collected =
+CALCULATE(
+    COUNTROWS(Appointments),
+    Appointments[StatusName] IN {"In Progress", "Testing", "Completed"}
+)
+
+Stage 4 - Testing =
+CALCULATE(
+    COUNTROWS(Appointments),
+    Appointments[StatusName] IN {"Testing", "Completed"}
+)
+
+Stage 5 - Completed =
+CALCULATE(
+    COUNTROWS(Appointments),
+    Appointments[StatusName] = "Completed"
 )
 ```
+
+---
 
 ## � Cấu hình từng Chart trong Power BI
 
@@ -366,18 +390,40 @@ SWITCH(
 ✓ Inner radius: 50%
 ```
 
-### 6. Tạo Table - Detailed Data
+### 6. Tạo Funnel Chart - Process Stages
 
-**Bước 1:** Drag visual "Table"
-**Bước 2:** Add columns:
+**Bước 1:** Drag visual "Funnel Chart"
+**Bước 2:** Cấu hình fields:
 
 ```
-✓ AppointmentDate
-✓ Username
-✓ ServiceName
-✓ StatusName
-✓ TotalAmount
-✓ IsPaid
+✓ Category: Process Stage names
+✓ Values: Count of appointments per stage
+✓ Sort: By stage order (1-5)
+✓ Enable data labels
+```
+
+**Bước 3:** Tạo calculated table cho Funnel data:
+
+```dax
+FunnelData = 
+VAR Stage1 = CALCULATE(COUNTROWS(Appointments), Appointments[StatusName] <> "Cancelled")
+VAR Stage2 = CALCULATE(COUNTROWS(Appointments), Appointments[StatusName] IN {"Confirmed", "In Progress", "Testing", "Completed"})
+VAR Stage3 = CALCULATE(COUNTROWS(Appointments), Appointments[StatusName] IN {"In Progress", "Testing", "Completed"})
+VAR Stage4 = CALCULATE(COUNTROWS(Appointments), Appointments[StatusName] IN {"Testing", "Completed"})
+VAR Stage5 = CALCULATE(COUNTROWS(Appointments), Appointments[StatusName] = "Completed")
+RETURN
+DATATABLE(
+    "Stage", STRING,
+    "Count", INTEGER,
+    "Order", INTEGER,
+    {
+        {"1. Đặt lịch hẹn", Stage1, 1},
+        {"2. Xác nhận", Stage2, 2},
+        {"3. Lấy mẫu", Stage3, 3},
+        {"4. Phân tích", Stage4, 4},
+        {"5. Hoàn thành", Stage5, 5}
+    }
+)
 ```
 
 ## 🎯 Kết nối API và Load Data
@@ -429,7 +475,7 @@ in
 - [ ] Pie Chart: Status Distribution
 - [ ] Column Chart: Monthly Revenue
 - [ ] Donut Chart: Payment Status
-- [ ] Table: Detailed View
+- [ ] Funnel Chart: Process Stages
 
 ### Final Steps (5 phút)
 
