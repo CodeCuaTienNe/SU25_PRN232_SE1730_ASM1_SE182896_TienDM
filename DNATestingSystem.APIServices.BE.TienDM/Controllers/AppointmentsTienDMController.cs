@@ -17,7 +17,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
     [Route("api/[controller]")]
     [ApiController]
 
-    //[Authorize(Roles = "1,2")]
+   
     public class AppointmentsTienDMController : ControllerBase
     {
         private readonly IAppointmentsTienDmService _appointmentsTienDmService;
@@ -44,6 +44,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
 
 
         [HttpGet("paginated")]
+        [Authorize]
         public async Task<ActionResult<PaginationResult<List<AppointmentsTienDmDto>>>> GetAllPaginated([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
             var searchRequest = new SearchAppointmentsTienDm { CurrentPage = page, PageSize = pageSize };
@@ -52,6 +53,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         }
 
         // GET: api/AppointmentsTienDM/{id}
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppointmentsTienDmDto>> GetById(int id)
         {
@@ -62,6 +64,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
         }
 
         //Create
+        [Authorize(Roles = "1,2")]
         [HttpPost]
         public async Task<ActionResult<bool>> Create([FromBody] AppointmentsTienDmCreateRequest request)
         {
@@ -77,6 +80,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
 
 
         //Update
+        [Authorize(Roles = "1,2")]
         [HttpPut("{id}")]
         public async Task<ActionResult<bool>> Update(int id, [FromBody] AppointmentsTienDmCreateRequest request)
         {
@@ -84,7 +88,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             return result > 0;
         }
 
-
+        [Authorize(Roles = "1,2")]
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
@@ -92,7 +96,7 @@ namespace DNATestingSystem.APIServices.BE.TienDM.Controllers
             return result;
         }
 
-
+        [Authorize]
         [HttpPost("search")]
         public async Task<ActionResult<PaginationResult<List<AppointmentsTienDmDto>>>> Search([FromBody] SearchAppointmentsTienDm searchRequest)
         {
